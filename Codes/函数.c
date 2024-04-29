@@ -198,54 +198,51 @@
 //1.实现print()  打印数组的每个元素
 //2.实现reverse()  函数完成数组元素的逆置。
 
-//void init(int arr[], int lenth);
-//void print(int arr[], int lenth);
-//void reverse(int arr[], int lenth);
-//
-//int main()
-//{
-//	int arr[] = {1,2,3,4,5,6,7,8,9,10};
-//	int sz = sizeof(arr) / sizeof(arr[0]);
-//	print(arr, sz);
-//	reverse(arr,sz);
-//	print(arr,sz);
-//	init(arr,sz);
-//	print(arr, sz);
-//	return 0;
-//}
-//
-//void init(int arr[], int lenth)
-//{
-//	for (int i = 0; i < lenth; i++)
-//	{
-//		arr[i] = 0;
-//	}
-//	return 0;
-//}
-//
-//void print(int arr[], int lenth)
-//{
-//	for (int i = 0; i < lenth; i++)
-//	{
-//		printf("%d ", arr[i]);
-//	}
-//	printf("\n");
-//	return 0;
-//}
-//
-////逆置一维数组
-//void reverse(int arr[], int lenth)
-//{
-//	int left = 0;
-//	int right =	lenth-1;
-//	while (left < right)
-//	{
-//		int temp = arr[right];
-//		arr[right] = arr[left];
-//		arr[left] = temp;
-//		left++;
-//		right--;
-//	}
-//	return 0;
-//}
+void init(int arr[], int lenth);
+void print(int arr[], int lenth);
+void reverse(int arr[], int lenth);
+
+int main()
+{
+	int arr[] = {1,2,3,4,5,6,7,8,9,10};
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	print(arr, sz);
+	reverse(arr,sz);
+	print(arr,sz);
+	init(arr,sz);
+	print(arr, sz);
+	return 0;
+}
+
+void init(int arr[], int lenth)
+{
+	for (int i = 0; i < lenth; i++)
+	{
+		arr[i] = 0;
+	}
+}
+
+void print(int arr[], int lenth)
+{
+	for (int i = 0; i < lenth; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+}
+
+//逆置一维数组
+void reverse(int arr[], int lenth)
+{
+	int left = 0;
+	int right =	lenth-1;
+	while (left < right)
+	{
+		int temp = arr[right];
+		arr[right] = arr[left];
+		arr[left] = temp;
+		left++;
+		right--;
+	}
+}
 
