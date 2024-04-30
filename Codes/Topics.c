@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
 
-
+   
 
 //输入n值，打印n行用“*”组成的X形图案
 //int main() {
