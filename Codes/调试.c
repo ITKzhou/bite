@@ -78,7 +78,85 @@
 //}
 
 
-//打印水仙花数
 
+//水仙花数是指一个 3 位数，它的每个位上的数字的
+// 3次幂之和等于它本身。例如：1^3 + 5^3+ 3^3 = 153
+
+//#include <math.h>
+//
+//int main()
+//{
+//	for (int i = 0; i < 100000; i++)
+//	{
+//		int n = 1;//一个数至少有一位
+//		int m = i;//保留i值，后面作比较
+//		int sum = 0;
+//		//1.得到i的几位数n
+//		while (m /= 10)
+//		{
+//			n++;
+//		}
+//		m = i;
+//		//2.计算每位的n次方，求和
+//		while (m)
+//		{
+//			sum += pow(m % 10, n);
+//			m /= 10;
+//		}
+//		//3.和与i比较
+//		if (sum == i)
+//		{
+//			printf("%d ", i);
+//		}	
+//	}
+//	return 0;
+//}
+
+
+
+//求Sn=a+aa+aaa+aaaa+aaaaa的前5项之和，其中a是一个数字，
+//例如：2 + 22 + 222 + 2222 + 22222
+
+
+//#include <math.h>
+
+//int main()
+//{
+//	int a = 0;
+//	int n = 0;
+//	printf("请输入a和n：\n");
+//	scanf("%d %d", &a,&n);
+//	
+//	int sum = 0;
+//	for (int i = 0; i < n; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < n - i; j++)
+//		{
+//			sum += a * pow(10, i);
+//		}
+//	}
+//	printf("%d的前%d和Sn=%d\n", a, n, sum);
+//
+//	return 0;
+//}
+
+//int main()
+//{
+//	int a = 0;
+//	int n = 0;
+//	printf("请输入a和n：\n");
+//	scanf("%d %d", &a, &n);
+//	
+//	int temp = 0;
+//	int sum = 0;
+//	for (int i = 0; i < n; i++)
+//	{
+//		temp += a * pow(10, i);
+//		sum += temp;
+//	}
+//	printf("%d的前%d和Sn=%d\n", a, n, sum);
+//	return 0;
+//}
 
 
