@@ -266,3 +266,181 @@
 //	}
 //	printf("%d ", n % 10);
 //}
+
+//青蛙跳台阶问题
+//递归求第n个斐波那契数
+
+//int Fib(int n)
+//{
+//	if (n <= 2)
+//	{
+//		return 1;
+//	}
+//	else
+//	{
+//		return Fib(n - 1) + Fib(n - 2);
+//	}
+//}
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	printf("%d\n", Fib(n));
+//	return 0;
+//}
+
+// 迭代求斐波那契数列
+
+//int Fib(int n)
+//{
+//	int a = 1;
+//	int b = 1;
+//
+//	int c = 1;
+//	while (n > 2)
+//	{
+//		c = a + b;
+//		a = b;
+//		b = c;
+//		n--;
+//	}
+//	return c;	
+//}
+//
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	printf("%d\n", Fib(n));
+//	return 0;
+//}
+
+
+
+//递归实现n的k次方
+
+//int power(int n, int k)
+//{
+//	if (k == 1)
+//	{
+//		return n;
+//	}
+//	else
+//	{
+//		return  n * power(n, k - 1);
+//	}
+//}
+//
+//int main()
+//{
+//	int n = 0;
+//	int k = 0;
+//	scanf("%d %d", &n, &k);
+//	int r = power(n, k);
+//	printf("%d\n", r);
+//	return 0;
+//}
+
+
+//计算一个数的每位之和（递归实现）
+
+//int DigitSum(int n)//12
+//{
+//	
+//	if (n < 10)
+//	{
+//		return n % 10;
+//	}
+//	return n % 10 + DigitSum(n / 10);//2+DigitSum(1)
+//}
+//
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int r = DigitSum(n);
+//	printf("%d\n", r);
+//
+//	return 0;
+//}
+
+//递归和非递归分别实现求n的阶乘（不考虑溢出的问题）
+
+//int Factorial(int n)
+//{
+//	int r = 1;
+//	while (n > 1)
+//	{
+//		r *= n;
+//		n--;
+//	}
+//	return r;
+//}
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int r = Factorial(n);
+//	printf("%d\n", r);
+//	return 0;
+//}
+
+//int Factorial(int n)//3
+//{
+//	if (n == 0)
+//	{
+//		return 1;
+//	}
+//	return n * Factorial(n - 1);//3*F(2)>>>2*F(1)>>1*F(0)
+//}
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	printf("%d\n", Factorial(n));
+//	return 0;
+//}
+
+
+//汉诺塔问题
+
+//void move(char pos1, char pos3)
+//{
+//	printf(" %c->%c ",pos1,pos3);
+//}
+//
+//void Hanoi(int n, char pos1, char pos2, char pos3)
+//{
+//	if (n == 1)
+//	{
+//		move(pos1, pos3);
+//	}
+//	else
+//	{
+//		Hanoi(n - 1, pos1, pos3, pos2);
+//		move(pos1, pos3);
+//		Hanoi(n - 1, pos2, pos1, pos3);
+//	}
+//}
+//
+//int main()
+//{
+//
+//	Hanoi(1, 'A', 'B', 'C');
+//	printf("\n");
+//	Hanoi(2, 'A', 'B', 'C');
+//	printf("\n");
+//	Hanoi(3, 'A', 'B', 'C');
+//	printf("\n");
+//	return 0;
+//}
+
+
+
+
+
