@@ -163,3 +163,21 @@
 //}
 
 
+//a存负数，以补码形式，实际是一个很大的数
+// int型无论是x86还是x64总是4Bety
+//int i;
+//int main()
+//{
+//    i--;
+//    //printf("%d", i);
+//    printf("%d", sizeof(i));
+//    if (i > sizeof(i))
+//    {
+//        printf(">\n");
+//    }
+//    else
+//    {
+//        printf("<\n");
+//    }
+//    return 0;
+//}
