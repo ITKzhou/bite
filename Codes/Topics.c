@@ -200,3 +200,21 @@
 //
 //	return 0;
 //}
+
+//喝汽水，1瓶汽水1元，2个空瓶可以换一瓶汽水，给20元，可以喝多少汽水
+
+//int main()
+//{
+//	int money = 0;
+//	scanf("%d", &money);
+//	int tatle = money;
+//	int empty = tatle;
+//	while (empty > 1)
+//	{
+//		tatle += empty / 2;//20+10+5+2+1+1=39
+//		empty = (empty / 2) + (empty % 2);//10+0,5+0,2+1,1+1,1+0
+//	}
+//	printf("%d\n", tatle);
+//	return 0;
+//}
+

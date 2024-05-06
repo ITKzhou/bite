@@ -254,8 +254,29 @@
 //	return 0;
 //}
 
+//数组名和对数组名取地址
 
-
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5 };
+//	int i = 0;
+//	for (i = 0; i < 5; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	printf("\n");
+//
+//	printf("%p\n", arr);
+//	printf("%p\n", &arr);
+//	printf("%p\n", &arr[0]);
+//
+//	printf("%p\n", arr + 1);
+//	printf("%p\n", &arr + 1);//跳过整个数组5*4=20(14H)
+//	printf("%p\n", &arr[0] + 1);
+//
+//	printf("%zd\n", &arr[4] - &arr[0]);
+//	return 0;
+//}
 
 
 
