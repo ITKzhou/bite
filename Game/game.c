@@ -88,7 +88,11 @@ void FindMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
 		scanf("%d %d", &x, &y);
 		if (x >= 1 && x <= row && y >= 1 && y <= col)//输入合法
 		{
-			if (mine[x][y] != '1')//不是雷
+			if (show[x][y] != '*')
+			{
+				printf("该坐标已排查，");
+			}
+			else if (mine[x][y] != '1')//不是雷
 			{
 				//计算该坐标周围雷的个数,存放到show数组
 				show[x][y] = GetMineCount(mine, x, y) + '0';

@@ -168,6 +168,85 @@
 //}
 
 
+//指针数组，模拟一个二维数组
+
+
+//int main()
+//{
+//	int arr1[] = { 1,2,3,4 };
+//	int arr2[] = { 3,4,5,6 };
+//	int arr3[] = { 5,6,7,8 };
+//
+//	int* arr[] = { arr1,arr2,arr3 };
+//
+//	int i = 0;
+//	for (i = 0; i < 3; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < 4; j++)
+//		{
+//			printf("%d ", arr[i][j]);
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+
+
+//模拟strcopy库函数
+
+//#include <assert.h>
+//
+//char* my_strcopy(char* desti, const char* source)//const修饰，*source不能写入
+//{
+//	char* ret = desti;
+//	assert(desti);//断言，表达式非空就正常，否则报错
+//	assert(source);
+//
+//	while (*desti++ = *source++)
+//	{
+//		;
+//	}
+//	return ret;//可以返回指针
+//}
+//
+//int main()
+//{
+//	char str1[] = { "xxxxxxxxxxxxx" };
+//	char str2[] = { "hello bite" };
+//	printf("%s\n", my_strcopy(str1, str2));
+//	return 0;
+//}
+
+
+//模拟strlen库函数
+
+//#include <assert.h>
+//
+//size_t my_strlen(const char* str)
+//{
+//	assert(str);
+//	size_t count = 0;
+//	
+//	while (*str)
+//	{
+//		count++;
+//		str++;
+//	}
+//	return count;
+//}
+//
+//int main()
+//{
+//	char arr[] = { "abcdef" };
+//	size_t ret = my_strlen(arr);
+//	printf("%zd\n", ret);
+//	return 0;
+//}
+
+
+
+
 
 
 

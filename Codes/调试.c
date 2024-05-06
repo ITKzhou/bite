@@ -159,4 +159,106 @@
 //	return 0;
 //}
 
+//调试一维数组
+
+//void test()
+//{
+//	printf("hehe\n");
+//}
+//
+//int main()
+//{
+//	int arr[10] = { 1,2,3,4,5 };
+//	int i = 0;
+//	test();
+//	for (i = 0; i < 10; i++)
+//	{
+//		arr[i] = -1;
+//	}
+//	for (i = 0; i < 10; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+
+//测试调用堆栈
+
+//void test2()
+//{
+//	printf("test2\n");
+//}
+//
+//void test1()
+//{
+//	test2();
+//}
+//
+//void test()
+//{
+//	test1();
+//}
+//
+//int main()
+//{
+//	test();
+//	return 0;
+//}
+
+
+//实例1：计算1！+2！+3！
+
+//int main()
+//{
+//	int i = 0;
+//	int sum = 0;//保存最终结果
+//	int n = 0;
+//	int ret = 1;//保存n的阶乘
+//	scanf("%d", &n);//3
+//	//1!+2!+3! = 1 + 2+ 6= 9
+//
+//	for (i = 1; i <= n; i++)
+//	{
+//		int j = 0;
+//		ret = 1;//debug得出
+//		for (j = 1; j <= i; j++)
+//		{
+//			ret *= j;
+//		}
+//		sum += ret;
+//	}
+//
+//	printf("%d\n", sum);
+//	
+//	return 0;
+//}
+
+//实例2：
+//VS 上，X86，debug模式下调试
+
+//int main()
+//{
+//	int i = 0;
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//
+//	for (i = 0; i <=12; i++)//死循环，&arr[12]=&i
+//	{
+//		arr[i] = 0;
+//		printf("hehe\n");
+//	}
+//	printf("%p\n", &i);
+//	printf("%p\n", &arr[0]);
+//	printf("%p\n", &arr[9]);
+//
+//	return 0;
+//}
+
+
+
+
+
+
+
+
 
