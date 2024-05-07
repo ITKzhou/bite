@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-//写一个函数，求字符串的长度
+//模拟strlen库函数
 //0.计数法
 
 
@@ -168,6 +168,40 @@
 //}
 
 
+//指针模拟一维数组
+
+//void Input(int* arr, int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		scanf("%d", arr + i);
+//	}
+//}
+//
+//void Print(int* arr, int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", *(arr + i));
+//	}
+//	printf("\n");
+//}
+//
+//int main()
+//{
+//	int arr[5] = { 0 };
+//	
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//
+//	Input(arr, sz);
+//
+//	Print(arr, sz);
+//
+//	return 0;
+//}
+
 //指针数组，模拟一个二维数组
 
 
@@ -245,8 +279,184 @@
 //}
 
 
+//冒泡排序，熟悉数组传参
 
 
+//void Input(int* prr, int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		scanf("%d", prr + i);
+//	}
+//}
+//
+//void Print(int arr[], int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", *(arr + i));
+//	}
+//	printf("\n");
+//}
+//
+//int count = 0;
+//
+//void bubble_sort(int* arr, int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz - 1; i++)//sz-1个元素要排序，如10个元素，只需要排前9个
+//	{
+//		int flag = 1;//初始标记无交换，一旦有交换就置0
+//		int j = 0;
+//		for (j = 0; j < sz - 1 - i; j++)//每一个元素比较的趟数，排序了一个就少比较一趟
+//		{
+//			count++;
+//			if (arr[j] > arr[j + 1])
+//			{
+//				flag = 0;
+//				int tmp = arr[j];
+//				arr[j] = arr[j + 1];
+//				arr[j + 1] = tmp;
+//			}
+//		}
+//		if (flag)
+//		{
+//			break;
+//		}
+//	}
+//}
+//
+//
+//int main()
+//{
+//
+//	int arr[10] = { 0 };
+//
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//
+//	//0.输入函数
+//	Input(arr, sz);
+//
+//	//1.输出函数
+//	//Print(arr, sz);
+//
+//	//2.排序
+//	bubble_sort(arr, sz);
+//
+//	Print(arr, sz);
+//	printf("count=%d\n", count);
+//
+//	return 0;
+//}
+
+//用指针数组模拟二维数组
+
+//void Input(int* arr[], int sz, int sz_n)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < sz_n; j++)
+//		{
+//			//scanf("%d", &arr[i][j]);
+//			scanf("%d", *(arr+i)+j);
+//		}
+//	}
+//}
+//
+//void Print(int* arr[],int sz,int sz_n)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < sz_n; j++)
+//		{
+//			//printf("%d ", arr[i][j]);
+//			printf("%d ", *(*(arr + i) + j));
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//int main()
+//{
+//	int arr1[4] = { 0 };
+//	int arr2[4] = { 0 };
+//	int arr3[4] = { 0 };
+//
+//	int* arr[] = { arr1,arr2,arr3 };
+//
+//	int sz_n = sizeof(arr1) / sizeof(arr1[0]);
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//
+//	//写入
+//	Input(arr, sz, sz_n);
+//	
+//	//读出
+//	Print(arr, sz, sz_n);
+//
+//	return 0;
+//}
+
+
+
+//数组指针
+
+
+//int main()
+//{
+//	int arr1[4] = { 0 };
+//	int arr2[4] = { 0 };
+//	int arr3[4] = { 0 };
+//
+//	char* ch1 = "abcdef";
+//	char* ch2[5];
+//
+//	int* arr[] = { arr1,arr2,arr3 };
+//
+//	int(*prn)[4] = &arr1;
+//
+//	int* (*pr)[3] = &arr;
+//
+//	char* (*pc1) = &ch1;
+//	char* (*pc2)[5] = &ch2;
+//
+//	return 0;
+//}
+
+
+//写一个函数，判断一个字符串是否为另外一个字符串旋转之后的字符串。
+//例如：给定s1 = AABCD和s2 = BCDAA，返回1
+//给定s1 = abcd和s2 = ACBD，返回0.
+
+
+//#include <string.h>
+//
+//int findRound(const char* src, char* find)
+//{
+//	char tmp[256] = { 0 }; //用一个辅助空间将原字符串做成两倍原字符串
+//	strcpy(tmp, src); //先拷贝一遍
+//	strcat(tmp, src); //再连接一遍
+//	return strstr(tmp, find) != NULL; //看看找不找得到
+//}
+//
+//int main()
+//{
+//	char s1[] = "AABCD";
+//	char s2[] = "BCDAA";
+//
+//	char s3[] = "abcd";
+//	char s4[] = "ABCD";
+//
+//	printf("%d\n", findRound(s1, s2));
+//	printf("%d\n", findRound(s3, s4));
+//
+//	return 0;
+//}
 
 
 
