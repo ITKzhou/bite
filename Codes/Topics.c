@@ -448,6 +448,50 @@ int checkData(int* p)
 //	return 0;
 //}
 
+//倒置字符串
+//将一句话的单词进行倒置，标点不倒置。比如 I like beijing. 经过函数后变为：beijing. like I
 
-
+//#include <string.h>
+//
+//void reverce(char* left, char* right)
+//{
+//	while (left < right)
+//	{
+//		char temp = *left;
+//		*left = *right;
+//		*right = temp;
+//		left++;
+//		right--;
+//	}
+//}
+//
+//int main()
+//{
+//	char arr[101] = { 0 };
+//	gets(arr);//输入字符串
+//
+//	int len = strlen(arr);
+//	//0.倒置整个字符串
+//	reverce(arr, arr + len - 1);
+//	//1.倒置每个单词
+//	char* cur = arr;
+//	while (*cur)
+//	{
+//		char* shart = cur;
+//		//a.找空格
+//		while (*cur != ' ' && *cur != '\0')
+//		{
+//			cur++;
+//		}
+//		char* end = cur - 1;
+//		//b.倒置单词
+//		reverce(shart, end);
+//		if (*cur == ' ')
+//		{
+//			cur++;
+//		}
+//	}
+//	printf("%s\n", arr);
+//	return 0;
+//}
 
