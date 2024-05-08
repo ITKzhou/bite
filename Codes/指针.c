@@ -459,7 +459,50 @@
 //}
 
 
+//杨氏矩阵
+//有一个数字矩阵，矩阵的每行从左到右是递增的，矩阵从上到下是递增的
+// 请编写程序在这样的矩阵中查找某个数字是否存在。
 
+//int findnum(int arr[][3], int x, int y, int k)
+//{
+//	int i = 0;
+//	int j = y - 1;
+//	while ((i < x) && (j >= 0))
+//	{
+//		if (k > arr[i][j])
+//		{
+//			i++;
+//		}
+//		else if (k < arr[i][j])
+//		{
+//			j--;
+//		}
+//		else
+//		{
+//			return 1;
+//		}
+//	}
+//	return 0;
+//}
+//
+//
+//int main()
+//{
+//	int arr[][3] = { {1,2,3},{4,5,6},{7,8,9} };
+//	int row = sizeof(arr) / sizeof(arr[0]);
+//	int col = sizeof(arr[0]) / sizeof(arr[0][0]);
+//
+//	if (findnum(arr, row, col, 7))
+//	{
+//		printf("找到了\n");
+//	}
+//	else
+//	{
+//		printf("不能找到\n");
+//	}
+//
+//	return 0;
+//}
 
 
 
