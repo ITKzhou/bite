@@ -26,6 +26,15 @@
 
 
 
+/// @Problem   : typedef对指针类型重命名        
+///****************************************************************************            
+/// @Solution  : 
+///一：类型名的位置放在之前指针名的位置
+///0. typedef int (*pf_t)(int,int);  函数指针新的类型名为pf_t
+///1. 
+
+///****************************************************************************
+
 
 
 
@@ -58,9 +67,26 @@
 //}
 
 
-//数组指针：二维数组传参时作为形参
+//
 
-//void print(int (*p)[5], int r, int c)
+
+
+
+/// @Problem   :   数组指针作为形参接收二维数组传参      
+///****************************************************************************            
+/// @Solution  : 
+///一：二维数组传参，传的是第一行的地址，类型是指向一维数组的指针 int (*arrp）[5]
+///0. 
+///1. 
+
+///二：
+///0. 
+///1. 
+
+///@Codeing    :  二维数组传参
+///————————————————————————————————————————————————————————————————————————————
+
+//void print(int(*arrp)[5], int r, int c)
 //{
 //	int i = 0;
 //	for (i = 0; i < 3; i++)
@@ -68,8 +94,8 @@
 //		int j = 0;
 //		for (j = 0; j < 5; j++)
 //		{
-//			//printf("%d ", p[i][j]);
-//			printf("%d ", *((*(p + i) + j)));
+//			//printf("%d ", arrp[i][j]);
+//			printf("%d ", *((*(arrp + i) + j)));
 //		}
 //		printf("\n");
 //	}
@@ -82,6 +108,15 @@
 //
 //	return 0;
 //}
+
+///****************************************************************************
+
+
+
+
+
+
+
 
 
 //函数指针：《C陷阱和缺陷》
@@ -100,9 +135,20 @@
 //}
 
 
-//函数指针数组：实现加减乘除的计算器 ————转移表
 
-//0.普通实现
+/// @Problem   :     实现加减乘除的计算器 ————转移表    
+///****************************************************************************            
+/// @Solution  : 
+///一：
+///0. 
+///1. 
+
+///二：
+///0. 
+///1. 
+
+///@Codeing    :     函数指针数组
+///————————————————————————————————————————————————————————————————————————————            
 
 int Add(int x, int y)
 {
@@ -133,108 +179,34 @@ void menu()
 	printf("*******************************\n");
 }
 
-//int main()
+//void Print_fparr(int (*fparr[5])(int, int), int x, int y, size_t size)
 //{
-//	int input = 0;
-//	int x = 0;
-//	int y = 0;
-//	int ret = 0;
-//	do
+//	int i = 0;
+//	for (i = 1; i < 5; i++)
 //	{
-//		menu();
-//		printf("请选择:>\n");
-//		scanf("%d", &input);
+//		int ret = fparr[i](x, y);
+//		printf("%d \n", ret);
+//	}
+//}
 //
-//		switch (input)
-//		{
-//		case 1:
-//			printf("请输入x,y：\n");
-//			scanf("%d %d", &x, &y);
-//			ret = Add(x, y);
-//			printf("%d\n", ret);
-//			break;
-//		case 2:
-//			printf("请输入x,y：\n");
-//			scanf("%d %d", &x, &y);
-//			ret = Sub(x, y);
-//			printf("%d\n", ret);
-//			break;
-//		case 3:
-//			printf("请输入x,y：\n");
-//			scanf("%d %d", &x, &y);
-//			ret = Mul(x, y);
-//			printf("%d\n", ret);
-//			break;
-//		case 4:
-//			printf("请输入x,y：\n");
-//			scanf("%d %d", &x, &y);
-//			ret = Div(x, y);
-//			printf("%d\n", ret);
-//			break;
-//		case 0:
-//			printf("退出计算器。\n");
-//			break;
-//		default:
-//			printf("输入错误，重新输入！\n");
-//			break;
-//		}
-//	} while (input);
-//	return 0;
-//}
-
-//1.函数指针数组实现
-
 //int main()
 //{
-//	int input = 0;
 //	int x = 0;
 //	int y = 0;
-//	int ret = 0;
-//	//定义函数指针数组pfar
-//	int (* pfarr[])(int, int) = { NULL, &Add, &Sub, &Mul, &Div };
-//	do
-//	{
-//		menu();
-//		printf("请选择:>\n");
-//		scanf("%d", &input);
-//		switch (input)
-//		{
-//		case 1:
-//			printf("请输入x,y：\n");
-//			scanf("%d %d", &x, &y);
-//			ret = pfarr[input](x, y);//调用函数指针数组pfar
-//			printf("%d\n", ret);
-//			break;
-//		case 2:
-//			printf("请输入x,y：\n");
-//			scanf("%d %d", &x, &y);
-//			ret = pfarr[input](x, y);
-//			printf("%d\n", ret);
-//			break;
-//		case 3:
-//			printf("请输入x,y：\n");
-//			scanf("%d %d", &x, &y);
-//			ret = pfarr[input](x, y);
-//			printf("%d\n", ret);
-//			break;
-//		case 4:
-//			printf("请输入x,y：\n");
-//			scanf("%d %d", &x, &y);
-//			ret = pfarr[input](x, y);
-//			printf("%d\n", ret);
-//			break;
-//		case 0:
-//			printf("退出计算器。\n");
-//			break;
-//		default:
-//			printf("输入错误，重新输入！\n");
-//			break;
-//		}
-//	} while (input);
+//
+//	int (*fparr[])(int, int) = { NULL, &Add, &Sub, &Mul, &Div };
+//	size_t sz = sizeof(fparr) / sizeof(fparr[0]);
+//
+//	printf("请输入x,y：\n");
+//	scanf("%d %d", &x, &y);
+//
+//	Print_fparr(fparr, x, y, sz);
+//
 //	return 0;
 //}
 
-//2.回调函数实现
+///@Codeing    :     回调函数机制：
+///————————————————————————————————————————————————————————————————————————————            
 
 
 //void calr(int (*pf)(int ,int))//函数指针作为形参
@@ -280,6 +252,41 @@ void menu()
 //	} while (input);
 //	return 0;
 //}
+
+
+///****************************************************************************
+
+
+
+
+
+
+
+/// @Problem   :         使用qsort函数
+///****************************************************************************            
+/// @Solution  : 
+///一：
+///0. 
+///1. 
+
+///二：
+///0. 
+///1. 
+
+///@Codeing    :  
+///————————————————————————————————————————————————————————————————————————————            
+
+
+
+
+
+
+
+///****************************************************************************
+
+
+
+
 
 #include <stdlib.h>
 //qsort函数
@@ -478,6 +485,57 @@ void menu()
 //	return 0;
 //}
 
+
+
+//一个数组中只有两个数字是出现一次，其他所有数字都出现了两次
+//编写一个函数找出这两个只出现一次的数字
+
+
+//void Find_nums(int* arr, int sz, int* px, int* py)
+//{
+//	int i = 0;
+//	int num = 0;
+//	int pos = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		num ^= arr[i];//标记整体异或的值
+//	}
+//	for (i = 0; i < 32; i++)
+//	{
+//		if (((num >> pos) & 1) == 1)//标记32位中从低到高位第一个为1的位置
+//		{
+//			pos = i;
+//			break;
+//		}
+//	}
+//	for (i = 0; i < sz; i++)
+//	{
+//		if (((arr[i] >> pos) & 1) == 1)//该比特位为‘1’，必定是所有元素累积异或后，只出现一次的两个数字其中一个
+//		{
+//			(*px) ^= arr[i];
+//		}
+//		else//该比特位为‘0’，就必定是另外一个只出现一次的数字
+//		{
+//			(*py) ^= arr[i];
+//		}
+//	}
+//
+//}
+//
+//
+//int main()
+//{
+//	int arr[10] = { 1,2,3,4,5,1,2,3,4,6 };
+//	int x = 0;
+//	int y = 0;
+//
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//
+//	Find_nums(arr, sz, &x, &y);
+//	printf("%d, %d\n", x, y);
+//
+//	return 0;
+//}
 
 
 
