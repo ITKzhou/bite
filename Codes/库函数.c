@@ -281,6 +281,178 @@
 
 
 
+/// @Problem   :    字符函数     
+///————————————————————————————————————————————————————————————————————————————            
+/// @Solution  : 
+///一：字符分类函数
+///0. int isxdigit ( int c );是十六进制
+///1. 
+
+///二：字符转换函数
+///0. int toupper ( int c );
+///1. int tolower ( int c );
+
+///@Codeing    :  大写就转小写，小写就转大写
+///**********************************Start*************************************          
+
+//#include <ctype.h>
+//
+//int main()
+//{
+//	char str[20] = "s0W3Xa1H2gg";
+//	char* p = str;
+//	while (*p)//'0' ASCII码-48   '\0' ASCII码-0
+//	{
+//		if (islower(*p))
+//		{
+//			*p = toupper(*p);
+//		}
+//		else if (isupper(*p))
+//		{
+//			*p = tolower(*p);
+//		}
+//		p++;
+//	}
+//	printf("%s\n", str);
+//	return 0;
+//}
+
+///**********************************End***************************************
+
+
+
+
+
+
+/// @Problem   :      模拟实现 memcpy   
+///————————————————————————————————————————————————————————————————————————————            
+/// @Solution  : 
+///一：
+///0. 强制类型转换是临时的，只是在本次表达式中有效。
+///1. 
+
+///二：
+///0. 
+///1. 
+
+///@Codeing    :  void * memcpy ( void * destination, const void * source, size_t num );
+///**********************************Start*************************************          
+
+//void* my_memcpy(void* dest, const void* sour, size_t num)
+//{
+//	void* ret = dest;
+//	while (num--)//num先问条件，满足（减1），进入循环，不满足（减1），跳过循环
+//	{
+//		*(char*)dest = *(char*)sour;
+//		dest = (char*)dest + 1;
+//		sour = (char*)sour + 1;
+//	}
+//	return ret;
+//}
+//
+//int main()
+//{
+//	int arr1[20] = { 0 };
+//	int arr2[] = { 1,2,3,4,5,6,7,8,9,10 };
+//
+//	//str2拷贝5个元素到str1中   '20'  表示20字节
+//	int* p = (int*)my_memcpy(arr1, arr2, 20);
+//	for (int i = 0; i < 20; i++)
+//	{
+//		printf("%d ", p[i]);
+//	}
+//	
+//	return 0;
+//}
+
+///**********************************End***************************************
+
+
+
+
+
+
+/// @Problem   :    模拟实现 memmove     
+///————————————————————————————————————————————————————————————————————————————            
+/// @Solution  : 
+///一：实现重叠内存的拷贝
+///0. 
+///1. 
+
+///@Codeing    :  void * memmove ( void * destination, const void * source, size_t num );
+///**********************************Start*************************************          
+
+//#include <assert.h> 
+//
+//void* my_memmove(char* dest, const char* sour, size_t num)
+//{
+//	assert(dest && sour);
+//	void* ret = dest;
+//	if (dest < sour)
+//	{
+//		for (int i = 0; i < num; i++)
+//		{
+//			*(char*)dest = *(char*)sour;
+//			dest = (char*)dest + 1;
+//			sour = (char*)sour + 1;
+//		}
+//	}
+//	else
+//	{
+//		while (num--)
+//		{
+//			//优先级：后缀++  (类型转换，解引用)同级
+//			//结合性：(类型转换，解引用)从右到左
+//			*((char*)dest + num) = *((char*)sour + num);
+//		}
+//	}
+//	return ret;
+//}
+//
+//int main()
+//{
+//	int arr[20] = { 1,2,3,4,5,6,7,8,9,10 };
+//
+//	//my_memmove(arr + 2, arr, 16);//1 2 1 2 3 4 7 8 9 10
+//	my_memmove(arr, arr + 2, 16);//3 4 5 6 5 6 7 8 9 10
+//	for (int i = 0; i < 20; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+
+
+///**********************************End***************************************
+
+
+
+
+
+/// @Problem   :        memset     memcmp
+///————————————————————————————————————————————————————————————————————————————            
+/// @Solution  : 
+///一：都是以字节为单位
+///0. 
+///1. 
+
+///@Codeing    : void * memset ( void * ptr, int value, size_t num ); 
+///			 int memcmp ( const void * ptr1, const void * ptr2, size_t num );
+///**********************************Start*************************************          
+
+//int main()
+//{
+//	char str[20] = "Hello bite";
+//	int arr1[10] = { 1,2,3,0x02020304,5,6,7,8,9,10 };
+//	int arr2[] = { 1,2,3,0x01020304,6,1,1,0,0,0 };
+//	printf("%s\n", (char*)memset(str, 'z', 4));
+//	printf("%d\n", memcmp(arr1, arr2, 16));//'16'以字节为单位
+//
+//	return 0;
+//}
+
+///**********************************End***************************************
 
 
 
