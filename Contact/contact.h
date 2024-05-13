@@ -30,15 +30,20 @@ typedef struct peoInfo
 }peoInfo;
 
 
-//定义通讯录
+////定义静态版本的通讯录
+//typedef struct Contact
+//{
+//	peoInfo data[MAX];
+//	int sz;//记录通讯录里面联系人的个数
+//}Contact;
+
+
 typedef struct Contact
 {
-	peoInfo data[MAX];
-	int sz;//记录通讯录里面联系人的个数
+	peoInfo* data;//存放数据
+	int sz;//记录的时当前通讯录中存放的人的信息个数
+	int capacity;//记录的是通讯录的当前容量
 }Contact;
-
-
-
 
 
 

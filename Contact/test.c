@@ -7,11 +7,11 @@
 
 void menu()
 {
-	printf("********************************\n");
-	printf("**** 1. add        2. del   ****\n");
-	printf("**** 3. search     4.modify ****\n");
-	printf("**** 5. show       6. sort  ****\n");
-	printf("**** 0. exit                ****\n");
+	printf("*********************************\n");
+	printf("**** 1. add        2. del    ****\n");
+	printf("**** 3. search     4. modify ****\n");
+	printf("**** 5. show       6. sort   ****\n");
+	printf("**** 0. exit                 ****\n");
 	printf("********************************\n");
 }
 
@@ -60,10 +60,10 @@ int main()
 			ShowContact(&con);
 			break;
 		case SORT:
-			SortContact(&con,0);//'1'姓名升序，'0'年龄升序
+			SortContact(&con);
 			break;
 		case EXIT:
-			//DestroyContact(&con);
+			DestroyContact(&con);
 			printf("退出通讯录.\n");
 			break;
 		default:

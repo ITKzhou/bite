@@ -3,23 +3,93 @@
 #include "contact.h"
 
 
-//初始化通讯录
+////初始化通讯录--静态版本
+//void InitContact(Contact* pc)
+//{
+//	assert(pc);
+//	pc->sz = 0;
+//	memset(pc, 0, sizeof(pc->data));
+//}
+
+
+//初始化通讯录--动态版本
 void InitContact(Contact* pc)
 {
 	assert(pc);
 	pc->sz = 0;
-	memset(pc, 0, sizeof(pc->data));
+	pc->capacity = DEFAULT_SZ;
+	pc->data = calloc(pc->capacity, sizeof(peoInfo));//参数（元素个数，类型大小）
+	if (pc->data == NULL)
+	{
+		perror("InitContac->calloc");
+		return;
+	}
 }
 
-//增加联系人
+
+//销毁通讯录
+void DestroyContact(Contact* pc)
+{
+	free(pc->data);
+	pc->data = NULL;
+	pc->sz = 0;
+	pc->capacity = 0;
+}
+
+////增加联系人--静态版本
+//void AddContact(Contact* pc)
+//{
+//	assert(pc);
+//	if (pc->sz == MAX)
+//	{
+//		printf("通讯录已满，无法添加！");
+//		return;
+//	}
+//	printf("请输入联系人的姓名:>");
+//	scanf("%s", pc->data[pc->sz].name);
+//	printf("请输入联系人的年龄:>");
+//	scanf("%d", &(pc->data[pc->sz].age));
+//	printf("请输入联系人的性别:>");
+//	scanf("%s", pc->data[pc->sz].sex);
+//	printf("请输入联系人的电话:>");
+//	scanf("%s", pc->data[pc->sz].tele);
+//	printf("请输入联系人的地址:>");
+//	scanf("%s", pc->data[pc->sz].addr);
+//
+//	pc->sz++;
+//	printf("添加成功\n");
+//}
+
+
+//增加通讯录容量
+void CheckCapacity(Contact* pc)
+{
+	if (pc->sz == pc->capacity)//通讯录容量满了，需要扩容
+	{
+		peoInfo* ptr = (peoInfo*)realloc(pc->data, (pc->capacity + DEFAULT_INC) * sizeof(peoInfo));
+		if (ptr != NULL)
+		{
+			pc->data = ptr;
+			pc->capacity += DEFAULT_INC;
+			printf("扩容成功\n");
+		}
+		else
+		{
+			perror("CheckCapacity->realloc");
+			return;
+		}
+	}
+}
+
+
+//增加联系人--动态版本
 void AddContact(Contact* pc)
 {
 	assert(pc);
-	if (pc->sz == MAX)
-	{
-		printf("通讯录已满，无法添加！");
-		return;
-	}
+	//增加容量
+	CheckCapacity(pc);
+
+	//填写信息
 	printf("请输入联系人的姓名:>");
 	scanf("%s", pc->data[pc->sz].name);
 	printf("请输入联系人的年龄:>");
@@ -34,6 +104,8 @@ void AddContact(Contact* pc)
 	pc->sz++;
 	printf("添加成功\n");
 }
+
+
 
 //显示所有的联系人
 void ShowContact(const Contact* pc)
@@ -155,8 +227,11 @@ int cmp_age(const void* p1, const void* p2)
 	return ((peoInfo*)p1)->age - ((peoInfo*)p2)->age;
 }
 
-void SortContact(Contact* pc,int num)
+void SortContact(Contact* pc)
 {
+	int num = 0;
+	printf("<1名字升序> <0:年龄升序>，请输入:>>");
+	scanf("%d", &num);
 	if (num)
 	{
 		qsort(pc->data, pc->sz, sizeof(pc->data[0]), cmp_name); //按照名字升序
