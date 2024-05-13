@@ -457,3 +457,106 @@
 
 
 
+/// @Problem   :   malloc     calloc     realloc   free
+///————————————————————————————————————————————————————————————————————————————            
+/// @Solution  : 
+/// 一：正确使用
+/// 0. void* malloc (size_t size);
+/// 1. void* calloc (size_t num, size_t size);
+/// 2. void* realloc (void* ptr, size_t size);对动态申请的内存空间进行扩容
+/// 3. void free (void* ptr);只能对动态开辟的空间使用，不可对非动态开辟内存使用
+
+/// 二：异常陷阱
+/// 0. 动态开辟空间，必须对NULL指针判断
+/// 1. 不可越界访问
+/// 2. 不可对非动态开辟内存使用free()
+/// 3. 不可使用free()释放部分动态内存空间
+/// 4. 不可对同一块动态内存多次释放
+
+/// @Codeing    :  
+///**********************************Start*************************************          
+
+//#include <stdlib.h>
+//
+//enum LOC_MAX
+//{
+//	MAL=10,
+//	CAL=20,
+//	REAL=20
+//};
+//
+//void test_loc()
+//{
+//	int* pm = (int*)malloc(MAL * sizeof(int));
+//	int* pc = (int*)calloc(CAL, sizeof(int));
+//
+//	if (pm == NULL || pc == NULL)
+//	{
+//		perror("malloc,calloc");
+//		return;
+//	}
+//	int i = 0;
+//	初始化malloc
+//	for (i = 0; i < MAL; i++)
+//	{
+//		pm[i] = i + 1;
+//	}
+//	打印malloc申请的空间
+//	for (i = 0; i < MAL; i++)
+//	{
+//		printf("%d ", pm[i]);
+//		if (i == MAL - 1)
+//		{
+//			printf("\n");
+//		}
+//	}
+//	calloc自动初始化，打印calloc申请的空间
+//	for (i = 0; i < CAL; i++)
+//	{
+//		printf("%d ", pc[i]);
+//		if (i == CAL - 1)
+//		{
+//			printf("\n");
+//		}
+//	}
+//	对malloc申请的空间pm扩容
+//	int* pr = (int*)realloc(pm, REAL * sizeof(int));
+//	if (pr == NULL)//最好判断是否为空，调用断言
+//	{
+//		perror("realloc");
+//		return;
+//	}
+//	else
+//	{
+//		pm = pr;
+//	}
+//	for (i = 0; i < REAL; i++)
+//	{
+//		printf("%d ", pm[i]);
+//		if (i == REAL - 1)
+//		{
+//			printf("\n");
+//		}
+//	}
+//
+//	free(pm);
+//	free(pc);
+//	pm = NULL;
+//	pc = NULL;
+//}
+//
+//int main()
+//{
+//	test_loc();
+//	return;
+//}
+
+///**********************************End***************************************
+
+
+
+
+
+
+
+
