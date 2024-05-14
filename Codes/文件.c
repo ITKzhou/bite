@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
+#include <stdlib.h>
 
 
 /// @Problem   :         打开文件   读写文件    关闭文件
@@ -215,6 +216,108 @@
 ///**********************************End***************************************
 
 
+
+/// @Problem   :  fgetc()  fgets()  fread()   判断读取文件结束   feof() ferror()  
+///————————————————————————————————————————————————————————————————————————————            
+/// @Solution  : 
+/// 一：
+/// fgetc判断是否为 EOF.
+/// fgets 判断返回值是否为 NULL.
+/// fread判断返回值是否小于实际要读的个数。
+ 
+
+/// 二：
+/// ferror -在文件读取结束后，用来判断文件是否因为读取过程中遇到错误而结束!
+/// feof - 在文件读取结束后，用来判断文件是否因为读取过程中遇到文件结束标志而结束!
+/// 1. 
+
+/// @Codeing    :  
+///**********************************Start*************************************          
+
+//写一个代码完成文件的拷贝   data1.txt("r") ---> data2.txt("w")
+ 
+//int main()
+//{
+//	FILE* pfread = fopen("data1.txt", "r");
+//	if (pfread == NULL)
+//	{
+//		perror("pfread->fopen");
+//		return 1;
+//	}
+//	FILE* pfwrite = fopen("data2.txt", "w");
+//	if (pfwrite == NULL)
+//	{
+//		perror("pfwrite->fopen");
+//		fclose(pfread);
+//		pfread = NULL;
+//		return 1;
+//	}
+//	//拷贝文件
+//	int ch = 0;
+//	while (ch = fgetc(pfread) != EOF)
+//	{
+//		fputc(ch, pfwrite);//字符一律以ASCII码形式存储在文件中
+//	}
+//
+//	fclose(pfread);
+//	pfread = NULL;
+//	fclose(pfwrite);
+//	pfwrite = NULL;
+//
+//	return 0;
+//}
+
+//使用fread()测试feof(),ferror()
+
+//enum { SIZE = 10 };
+//
+//int main()
+//{
+//	int a[SIZE] = { 1,2,3,4,5,6,7,8,9,10 };
+//	FILE* pf = fopen("test1.txt", "wb");//以输出二进制数据打开文件
+//	if (pf == NULL)
+//	{
+//		perror("fopen");
+//		return 1;
+//	}
+//	//写数据到文件
+//	fwrite(a, sizeof * a, SIZE, pf);//写文件
+//	fclose(pf);
+//	//从文件读取数据
+//	int b[SIZE] = { 0 };
+//	pf = fopen("test1.txt", "rb");//以输入二进制数据打开文件
+//	int ret_fread = fread(b, sizeof * b, SIZE, pf);//读文件
+//	if (ret_fread == SIZE)//fread()返回值与要读取个数相等，表示成功读取没有错误
+//	{
+//		puts("读取test1.txt成功");
+//		int i = 0;
+//		for (i = 0; i < SIZE; i++)
+//		{
+//			printf("%d ", b[i]);//打印输入缓冲区的内容
+//		}
+//		putchar('\n');
+//	}
+//	
+//	//读取错误判断
+//	else
+//	{
+//		if (feof(pf))
+//		{
+//			puts("读取test1.txt到文件的末尾\n");
+//		}
+//		else if (ferror(pf))
+//		{
+//			perror("读取test1.txt文件过程中出现错误：");
+//		}
+//	}
+//
+//	fclose(pf);
+//	pf = NULL;
+//
+//	return 0;
+//}
+
+///**********************************End***************************************
 
 
 
