@@ -13,6 +13,42 @@
 
 
 //初始化通讯录--动态版本
+//void InitContact(Contact* pc)
+//{
+//	assert(pc);
+//	pc->sz = 0;
+//	pc->capacity = DEFAULT_SZ;
+//	pc->data = calloc(pc->capacity, sizeof(peoInfo));//参数（元素个数，类型大小）
+//	if (pc->data == NULL)
+//	{
+//		perror("InitContac->calloc");
+//		return;
+//	}
+//}
+
+//加载文件信息到通讯录
+void LoadContact(Contact* pc)
+{
+	FILE* pf = fopen("contact.txt", "rb");
+	if (pf == NULL)
+	{
+		perror("LoadContact");
+		return;
+	}
+	peoInfo tmp = { 0 };
+	while (fread(&tmp, sizeof(peoInfo), 1, pf))
+	{
+		CheckCapacity(pc);
+		pc->data[pc->sz] = tmp;
+		pc->sz++;
+	}
+
+	fclose(pf);
+	pf = NULL;
+}
+
+
+//初始化通讯录--文件版本
 void InitContact(Contact* pc)
 {
 	assert(pc);
@@ -24,17 +60,13 @@ void InitContact(Contact* pc)
 		perror("InitContac->calloc");
 		return;
 	}
+	//加载文件信息到通讯录
+	LoadContact(pc);
+
 }
 
 
-//销毁通讯录
-void DestroyContact(Contact* pc)
-{
-	free(pc->data);
-	pc->data = NULL;
-	pc->sz = 0;
-	pc->capacity = 0;
-}
+
 
 ////增加联系人--静态版本
 //void AddContact(Contact* pc)
@@ -242,3 +274,35 @@ void SortContact(Contact* pc)
 	}
 	ShowContact(pc);
 }
+
+
+//销毁通讯录
+void DestroyContact(Contact* pc)
+{
+	free(pc->data);
+	pc->data = NULL;
+	pc->sz = 0;
+	pc->capacity = 0;
+}
+
+
+//保存通讯录到文件
+void SaveContact(Contact* pc)
+{
+	FILE* pf = fopen("contact.txt", "wb");
+	if (pf == NULL)
+	{
+		perror("SaveContact");
+		return;
+	}
+	int i = 0;
+	for (i = 0; i < pc->sz; i++)
+	{
+		fwrite(pc->data + i, sizeof(peoInfo), 1, pf);
+	}
+
+	fclose(pf);
+	pf = NULL;
+}
+
+

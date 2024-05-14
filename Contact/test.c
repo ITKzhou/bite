@@ -63,6 +63,8 @@ int main()
 			SortContact(&con);
 			break;
 		case EXIT:
+			//通讯录的信息保存到文件中
+			SaveContact(&con);
 			DestroyContact(&con);
 			printf("退出通讯录.\n");
 			break;

@@ -68,8 +68,14 @@ void ModifyContact(Contact* pc);
 //销毁通讯录
 void DestroyContact(Contact* pc);
 
+//增加通讯录容量
+void CheckCapacity(Contact* pc);
 
+//保存通讯录
+void SaveContact(Contact* pc);
 
+//加载文件信息到通讯录
+void LoadContact(Contact* pc);
 
 
 
