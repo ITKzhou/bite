@@ -56,7 +56,7 @@
 
 
 
-/// @Problem   :         模拟实现strcpy
+/// @Problem   :         模拟实现strcpy   strncpy
 ///————————————————————————————————————————————————————————————————————————————            
 /// @Solution  : 
 ///一：
@@ -65,7 +65,7 @@
 
 ///@Codeing    :  
 ///**********************************Start*************************************          
-//
+
 //char* my_strcpy(char* des, const char* sor)
 //{
 //	char* ret = des;
@@ -74,12 +74,27 @@
 //	return ret;
 //}
 //
+//char* my_strncpy(char* des, const char* sor,int num)
+//{
+//	char* ret = des;
+//	assert(sor && des);
+//	int i = 0;
+//	for (i = 0; i < num; i++)
+//	{
+//		*des = *sor;
+//		des++;
+//		sor++;
+//	}
+//	*des = 0;
+//	return ret;
+//}
+//
 //int main()
 //{
 //	char str1[20] = { 0 };
 //	char str2[20] = "abcdef";
 //	printf("%s\n", my_strcpy(str1, str2));
-//
+//	printf("%s\n", my_strncpy(str1, str2,4));
 //	return 0;
 //}
 
@@ -88,7 +103,7 @@
 
 
 
-/// @Problem   :         模拟实现strcat
+/// @Problem   :         模拟实现strcat    strncat
 ///————————————————————————————————————————————————————————————————————————————            
 /// @Solution  : 
 ///一：
@@ -114,11 +129,29 @@
 //	return ret;
 //}
 //
+//char* my_strncat(char* dest, const char* sour, int num)
+//{
+//	char* ret = dest;
+//	while (*dest != '\0')
+//	{
+//		dest++;
+//	}
+//	int i = 0;
+//	for (i = 0; i < num; i++)
+//	{
+//		*dest++ = *sour++;
+//	}
+//	*dest = 0;
+//	return ret;
+//}
+//
 //int main()
 //{
 //	char str1[20] = { "abc" };
-//	char str2[] = "def";
-//	printf("%s\n", my_strcat(str1, str2));
+//	char str2[20] = { "111" };
+//	char str3[] = "defg";
+//	printf("%s\n", my_strcat(str1, str3));
+//	printf("%s\n", my_strncat(str2, str3,3));
 //	return 0;
 //}
 
@@ -457,102 +490,90 @@
 
 
 
-/// @Problem   :   malloc     calloc     realloc   free
+/// @Problem   :      模拟实现 atio  
 ///————————————————————————————————————————————————————————————————————————————            
 /// @Solution  : 
-/// 一：正确使用
-/// 0. void* malloc (size_t size);
-/// 1. void* calloc (size_t num, size_t size);
-/// 2. void* realloc (void* ptr, size_t size);对动态申请的内存空间进行扩容
-/// 3. void free (void* ptr);只能对动态开辟的空间使用，不可对非动态开辟内存使用
-
-/// 二：异常陷阱
-/// 0. 动态开辟空间，必须对NULL指针判断
-/// 1. 不可越界访问
-/// 2. 不可对非动态开辟内存使用free()
-/// 3. 不可使用free()释放部分动态内存空间
-/// 4. 不可对同一块动态内存多次释放
+/// 一：
+/// 0. 
 
 /// @Codeing    :  
 ///**********************************Start*************************************          
 
-//#include <stdlib.h>
+
+//#include<stdio.h>
+//#include<assert.h>
+//#include<ctype.h>
+//#include<stdlib.h>
 //
-//enum LOC_MAX
+//enum State
 //{
-//	MAL=10,
-//	CAL=20,
-//	REAL=20
-//};
+//	VAILD,
+//	INVAILD
+//}Sta = INVAILD;//创造变量默认为非法
 //
-//void test_loc()
+//int my_atoi(const char* str)
 //{
-//	int* pm = (int*)malloc(MAL * sizeof(int));
-//	int* pc = (int*)calloc(CAL, sizeof(int));
-//
-//	if (pm == NULL || pc == NULL)
+//	assert(str);
+//	if (*str == '\0')
 //	{
-//		perror("malloc,calloc");
-//		return;
+//		return 0;
 //	}
-//	int i = 0;
-//	初始化malloc
-//	for (i = 0; i < MAL; i++)
+//	while (isspace(*str))
 //	{
-//		pm[i] = i + 1;
+//		str++;
 //	}
-//	打印malloc申请的空间
-//	for (i = 0; i < MAL; i++)
+//	int flag = 1;
+//	if (*str == '+')
 //	{
-//		printf("%d ", pm[i]);
-//		if (i == MAL - 1)
+//		flag = 1;
+//		str++;
+//	}
+//	else if (*str == '-')
+//	{
+//		flag = -1;
+//		str++;
+//	}
+//	long long ret = 0;
+//	while (*str != '\0')
+//	{
+//		if (isdigit(*str))
 //		{
-//			printf("\n");
+//			ret = ret * 10 + flag * (*str - '0');//减去字符0，才是数字0
+//			if (ret > INT_MAX || ret < INT_MIN)
+//			{
+//				return 0;
+//			}
 //		}
-//	}
-//	calloc自动初始化，打印calloc申请的空间
-//	for (i = 0; i < CAL; i++)
-//	{
-//		printf("%d ", pc[i]);
-//		if (i == CAL - 1)
+//		else
 //		{
-//			printf("\n");
+//			return (int)ret;//强制类型转化为int（函数的返回值是int）
 //		}
+//		str++;
 //	}
-//	对malloc申请的空间pm扩容
-//	int* pr = (int*)realloc(pm, REAL * sizeof(int));
-//	if (pr == NULL)//最好判断是否为空，调用断言
+//	if (*str == '\0')
 //	{
-//		perror("realloc");
-//		return;
+//		Sta = VAILD; //正常转换完了，到末尾的 \0
 //	}
-//	else
-//	{
-//		pm = pr;
-//	}
-//	for (i = 0; i < REAL; i++)
-//	{
-//		printf("%d ", pm[i]);
-//		if (i == REAL - 1)
-//		{
-//			printf("\n");
-//		}
-//	}
-//
-//	free(pm);
-//	free(pc);
-//	pm = NULL;
-//	pc = NULL;
+//	return (int)ret;
 //}
+//
 //
 //int main()
 //{
-//	test_loc();
-//	return;
+//	char arr[20] = "1234";
+//	int ret = my_atoi(arr);
+//	if (Sta == VAILD)
+//	{
+//		printf("合法转换:%d\n", ret);
+//	}
+//	else if (Sta == INVAILD)
+//	{
+//		printf("非法转换:%d\n", ret);
+//	}
+//	return 0;
 //}
 
 ///**********************************End***************************************
-
 
 
 
