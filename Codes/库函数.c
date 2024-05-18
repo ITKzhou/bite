@@ -5,18 +5,14 @@
 
 /// @Problem   :        模拟实现strlen 
 ///————————————————————————————————————————————————————————————————————————————            
-/// @Solution  : 
-///一：
-///0. 
-///1. 
+///
+///@Codeing    :  计算器实现
+///****************************************************************************          
 
-///@Codeing    :  
-///**********************************Start*************************************          
-
-//int my_strlen_count(const char* str)
+//int  my_strlen(const char* str)
 //{
 //	int count = 0;
-//	while (*str != '\0')
+//	while (*str)
 //	{
 //		count++;
 //		str++;
@@ -24,18 +20,28 @@
 //	return count;
 //}
 //
-//int my_strlen_recursion(const char* str)
+//int main()
 //{
-//	if (*str == '\0')
-//		return 0;
-//	else
-//		return 1 + my_strlen_recursion(str + 1);
+//	char str[] = { "abcdef" };
+//	int ret = my_strlen(str);
+//	printf("%d\n", ret);
+//	for (int i = 0; str[i] != '\0'; ++i)
+//	{
+//		printf("%c ", str[i]);
+//	}
+//	return 0;
 //}
-//
-//int my_strlen_pointSub(const char* str)
+
+
+/// @Codeing  :  
+///                                                                           
+///         指向同一块空间的两个指针相减，返回它们之间元素的个数                                                                                                                                               
+///****************************************************************************          
+
+//int my_strlen(const char* str)
 //{
-//	const char* start = str;
 //	assert(str);
+//	const char* start = str;//指向同一块空间
 //	while (*str)
 //	{
 //		str++;
@@ -46,13 +52,45 @@
 //int main()
 //{
 //	char str[] = { "abcdef" };
-//	printf("%d\n", my_strlen_count(str));
-//	printf("%d\n", my_strlen_recursion(str));
-//	printf("%d\n", my_strlen_pointSub(str));
+//	int ret = my_strlen(str);
+//	printf("%d\n", ret);
+//	for (int i = 0; str[i] != '\0'; ++i)
+//	{
+//		printf("%c ", str[i]);
+//	}
 //	return 0;
 //}
 
-///**********************************End***************************************
+
+/// @Codeing  :  
+///                                                                           
+///     递归实现                                                                                                                                                   
+///****************************************************************************          
+
+//int my_strlen(const char* str){
+//	assert(str);
+//	if (*str != '\0')
+//		return 1 + my_strlen(str + 1);
+//	else
+//		return 0;
+//}
+//
+//int main()
+//{
+//	char str[] = { "abcdef" };
+//	int ret = my_strlen(str);
+//	printf("%d\n", ret);
+//	for (int i = 0; str[i] != '\0'; ++i)
+//	{
+//		printf("%c ", str[i]);
+//	}
+//	return 0;
+//}
+
+
+///****************************************************************************
+
+
 
 
 
@@ -62,9 +100,8 @@
 ///一：
 ///0. 
 ///1. 
-
-///@Codeing    :  
-///**********************************Start*************************************          
+///@Codeing    :  char * strcpy ( char * destination, const char * source );
+///*****************************************************************************          
 
 //char* my_strcpy(char* des, const char* sor)
 //{
@@ -73,8 +110,24 @@
 //	while (*des++ = *sor++);//当指向'\0'时，先解引用复制过来后，再问条件和自增1
 //	return ret;
 //}
+// 
+//int main()
+//{
+//	char str1[] = "abcdef";
+//	char str2[20] = { 0 };
+//	my_strcpy(str2, str1);
+//	printf("%s\n", str2);
 //
-//char* my_strncpy(char* des, const char* sor,int num)
+//	return 0;
+//}
+
+
+/// @Codeing  :  
+///                                                                           
+///  char * strncpy ( char * destination, const char * source, size_t num );                                                                                                                                           
+///****************************************************************************          
+
+//static char* my_strncpy(char* des, const char* sor,int num)
 //{
 //	char* ret = des;
 //	assert(sor && des);
@@ -91,83 +144,89 @@
 //
 //int main()
 //{
-//	char str1[20] = { 0 };
-//	char str2[20] = "abcdef";
-//	printf("%s\n", my_strcpy(str1, str2));
-//	printf("%s\n", my_strncpy(str1, str2,4));
+//	char str1[] = "abcdef";
+//	char str2[20] = { 0 };
+//	my_strncpy(str2, str1, 4);
+//	printf("%s\n", str2);
 //	return 0;
 //}
 
-///**********************************End***************************************
+
+///******************************************************************************
+
 
 
 
 
 /// @Problem   :         模拟实现strcat    strncat
 ///————————————————————————————————————————————————————————————————————————————            
-/// @Solution  : 
-///一：
-///0. 
-///1. 
-
-///@Codeing    :  
-///**********************************Start*************************************          
+///
+///
+///@Codeing    :  char * strcat ( char * destination, const char * source );
+///*****************************************************************************          
 
 //char* my_strcat(char* str1, const char* str2)
 //{
+//	assert(str1 && str2);
 //	char* ret = str1;
-//	//找到str1字符串中指向'\0'的指针
-//	while (*str1 != '\0')
+//	while (*str1 != '\0')//找到str1字符串中指向'\0'的指针
 //	{
 //		str1++;
 //	}
-//	//str2复制到str1中
-//	while (*str1++ = *str2++)
+//	while (*str1++ = *str2++)//str2复制到str1中
 //	{
 //		;
 //	}
 //	return ret;
 //}
 //
-//char* my_strncat(char* dest, const char* sour, int num)
+//int main()
 //{
-//	char* ret = dest;
-//	while (*dest != '\0')
+//	char str1[20] = { "abc" };
+//	char str2[] = "defg";
+//	printf("%s\n", my_strcat(str1, str2));
+//	return 0;
+//}
+
+/// @Codeing  :  模拟实现 strncat()
+///                                                                           
+///   char * strncat ( char * destination, const char * source, size_t num );                                                                                                                                                     
+///****************************************************************************          
+
+//char* my_strncat(char* str1, const char* str2, size_t num)
+//{
+//	assert(str1 && str2);
+//	char* ret = str1;
+//	while (*str1 != '\0')//找到str1字符串中指向'\0'的指针
 //	{
-//		dest++;
+//		str1++;
 //	}
-//	int i = 0;
-//	for (i = 0; i < num; i++)
+//	while ((num--) && (*str1++ = *str2++))//str2复制到str1中
 //	{
-//		*dest++ = *sour++;
+//		;
 //	}
-//	*dest = 0;
 //	return ret;
 //}
 //
 //int main()
 //{
 //	char str1[20] = { "abc" };
-//	char str2[20] = { "111" };
-//	char str3[] = "defg";
-//	printf("%s\n", my_strcat(str1, str3));
-//	printf("%s\n", my_strncat(str2, str3,3));
+//	char str2[] = "defg";
+//	printf("%s\n", my_strncat(str1, str2, 3));
 //	return 0;
 //}
 
-///**********************************End***************************************
+///*****************************************************************************
+
+
 
 
 
 /// @Problem   :         模拟实现strcmp
 ///————————————————————————————————————————————————————————————————————————————            
-/// @Solution  : 
-///一：
-///0. 
-///1. 
-
-///@Codeing    :  
-///**********************************Start*************************************          
+///
+///@Codeing    :  int strcmp ( const char * str1, const char * str2 );
+///**************************************************************************          
 
 //int my_strcmp(const char* str1, const char* str2)
 //{
@@ -192,7 +251,36 @@
 //	return 0;
 //}
 
-///**********************************End***************************************
+/// @Codeing  :  
+///                                                                           
+///    int strncmp ( const char * str1, const char * str2, size_t num );                                                                                                                                                    
+///****************************************************************************          
+
+//int my_strncmp(const char* str1, const char* str2, size_t num)
+//{
+//	while (num-- && *str1 == *str2)
+//	{
+//		if (*str1 == '\0')
+//		{
+//			return 0;
+//		}
+//		str1++;
+//		str2++;
+//	}
+//	return *str1 - *str2;
+//}
+//
+//int main()
+//{
+//	char str1[20] = { "abcdfg" };
+//	char str2[20] = { "abcdeg" };
+//
+//	printf("%d\n", my_strncmp(str1, str2, 5));
+//	return 0;
+//}
+
+///****************************************************************************
+
 
 
 
@@ -201,11 +289,8 @@
 ///————————————————————————————————————————————————————————————————————————————            
 /// @Solution  : 
 ///一：
-///0. 
-///1. 
-
 ///@Codeing    :  
-///**********************************Start*************************************          
+///****************************************************************************         
 
 //char* my_strstr(const char* str1, const char* str2)
 //{
@@ -251,35 +336,31 @@
 //	return 0;
 //}
 
-///**********************************End***************************************
+///****************************************************************************
 
 
 
 /// @Problem   :        使用strtok :切割字符串
 ///————————————————————————————————————————————————————————————————————————————            
 /// @Solution  : 
-///一：
-///0. 
-
-///@Codeing    :      char * strtok ( char * str, const char * delimiters );
-///**********************************Start*************************************          
+/// 
+///@Codeing    :    char * strtok ( char * str, const char * delimiters );
+///***************************************************************************         
 
 //int main()
 //{
-//	char arr[] = "zpengwei@yeah.net@hehe.haha";
-//	char buf1[200] = { 0 };//"zpengwei\0yeah.net"
-//	strcpy(buf1, arr);
+//	char str[] = "122345@qq.com";
+//	char buf1[200] = { 0 };
+//	strcpy(buf1, str);//把arr拷贝到一个临时数组中
 //
-//	char* p = "@.";
-//	char* s = NULL;
-//	for (s = strtok(buf1, p); s != NULL; s=strtok(NULL, p))
+//	for (char* pch = strtok(buf1, ".@"); pch != NULL; pch = strtok(NULL, ".@"))
 //	{
-//		printf("%s\n", s);
+//		printf("%s\n", pch);
 //	}
 //	return 0;
 //}
 
-///**********************************End***************************************
+///*****************************************************************************
 
 
 
