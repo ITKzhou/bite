@@ -2,6 +2,49 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string.h>
+#include <errno.h>
+
+
+/// @Problem   :    字符函数     
+///————————————————————————————————————————————————————————————————————————————            
+/// @Solution  : 
+///一：字符分类函数
+///0. int isxdigit ( int c );是十六进制
+///1. 
+
+///二：字符转换函数
+///0. int toupper ( int c );
+///1. int tolower ( int c );
+
+///@Codeing    :  大写就转小写，小写就转大写
+///****************************************************************************          
+
+//#include <ctype.h>
+//
+//int main()
+//{
+//	char str[20] = "s0W3Xa1H2gg";
+//	char* p = str;
+//	while (*p)//'0' ASCII码-48   '\0' ASCII码-0
+//	{
+//		if (islower(*p))
+//		{
+//			*p = toupper(*p);
+//		}
+//		else if (isupper(*p))
+//		{
+//			*p = tolower(*p);
+//		}
+//		p++;
+//	}
+//	printf("%s\n", str);
+//	return 0;
+//}
+
+///******************************************************************************
+
+
+
 
 /// @Problem   :        模拟实现strlen 
 ///————————————————————————————————————————————————————————————————————————————            
@@ -89,8 +132,6 @@
 
 
 ///****************************************************************************
-
-
 
 
 
@@ -285,22 +326,25 @@
 
 
 
-/// @Problem   :         模拟实现strstr
+/// @Problem   :         模拟实现strstr()	查找子字符串
 ///————————————————————————————————————————————————————————————————————————————            
 /// @Solution  : 
-///一：
-///@Codeing    :  
+
+///@Codeing    :const char* strstr(const char* str1, const char* str2);
+///					  char* strstr(		 char* str1, const char* str2);
 ///****************************************************************************         
 
-//char* my_strstr(const char* str1, const char* str2)
+//const char* my_strstr(const char* str1, const char* str2)
 //{
+//	assert(str1 && str2);
 //	const char* cp;//标记每趟遍历的开始位置
 //	const char* s1;//遍历str1
 //	const char* s2;//遍历str2
-//	assert(str1 && str2);
-//
+//	if (str2 == '\0')
+//	{
+//		return str1;
+//	}
 //	cp = str1;
-//
 //	while (*cp)//str1中每个字符都按子集str2遍历一趟
 //	{
 //		s1 = cp; 
@@ -323,16 +367,16 @@
 //int main()
 //{
 //	char str1[20] = { "abcdefabcdef" };
-//	char str2[20] = { "efabc" };
-//	if (my_strstr(str1, str2) != NULL)
+//	char str2[20] = { "bcde" };
+//	const char* ret = my_strstr(str1, str2);
+//	if (ret != NULL)
 //	{
-//		printf("%s\n", my_strstr(str1, str2));
+//		printf("%s\n", ret);
 //	}
 //	else
 //	{
 //		printf("不能找到\n");
 //	}
-//
 //	return 0;
 //}
 
@@ -345,7 +389,6 @@
 /// @Problem   :        使用strtok :切割字符串
 ///————————————————————————————————————————————————————————————————————————————            
 /// @Solution  : 
-/// 
 ///@Codeing    :    char * strtok ( char * str, const char * delimiters );
 ///***************************************************************************         
 
@@ -367,7 +410,8 @@
 
 
 
-/// @Problem   :  strerror: 返回对应错误码的信息char * strerror ( int errnum );  
+
+/// @Problem   :  strerror: 获取指向错误消息字符串的指针char * strerror ( int errnum );  
 ///————————————————————————————————————————————————————————————————————————————            
 /// @Solution  : 
 ///一：
@@ -376,6 +420,7 @@
 ///@Codeing    :  perror:直接打印错误信息void perror ( const char * str );
 ///****************************************************************************          
 
+//#include <errno.h>
 //int main()
 //{
 //	FILE* pf = fopen("add.txt", "r");//以只读的形式打开文件
@@ -389,46 +434,6 @@
 //	{
 //		printf("打开文件成功\n");
 //	}
-//	return 0;
-//}
-
-///******************************************************************************
-
-
-
-/// @Problem   :    字符函数     
-///————————————————————————————————————————————————————————————————————————————            
-/// @Solution  : 
-///一：字符分类函数
-///0. int isxdigit ( int c );是十六进制
-///1. 
-
-///二：字符转换函数
-///0. int toupper ( int c );
-///1. int tolower ( int c );
-
-///@Codeing    :  大写就转小写，小写就转大写
-///****************************************************************************          
-
-//#include <ctype.h>
-//
-//int main()
-//{
-//	char str[20] = "s0W3Xa1H2gg";
-//	char* p = str;
-//	while (*p)//'0' ASCII码-48   '\0' ASCII码-0
-//	{
-//		if (islower(*p))
-//		{
-//			*p = toupper(*p);
-//		}
-//		else if (isupper(*p))
-//		{
-//			*p = tolower(*p);
-//		}
-//		p++;
-//	}
-//	printf("%s\n", str);
 //	return 0;
 //}
 
@@ -450,6 +455,7 @@
 
 //void* my_memcpy(void* dest, const void* sour, size_t num)
 //{
+//	assert(dest && sour);
 //	void* ret = dest;
 //	while (num--)//num先问条件，满足（减1），进入循环，不满足（减1），跳过循环
 //	{
@@ -480,34 +486,18 @@
 
 
 
-
-
-/// @Problem   :    模拟实现 memmove     
+/// @Problem   :    模拟实现 memmove     实现重叠内存的拷贝
 ///————————————————————————————————————————————————————————————————————————————            
 /// @Solution  : 
-///一：实现重叠内存的拷贝
-///0. 
-///1. 
-
+///一：
 ///@Codeing    :  void * memmove ( void * destination, const void * source, size_t num );
 ///****************************************************************************          
 
-//#include <assert.h> 
-//
-//void* my_memmove(char* dest, const char* sour, size_t num)
+//void* my_memmove(void* dest, void* sour, size_t num)
 //{
 //	assert(dest && sour);
 //	void* ret = dest;
-//	if (dest < sour)
-//	{
-//		for (int i = 0; i < num; i++)
-//		{
-//			*(char*)dest = *(char*)sour;
-//			dest = (char*)dest + 1;
-//			sour = (char*)sour + 1;
-//		}
-//	}
-//	else
+//	if (sour < dest)//从后开始拷贝
 //	{
 //		while (num--)
 //		{
@@ -516,22 +506,29 @@
 //			*((char*)dest + num) = *((char*)sour + num);
 //		}
 //	}
+//	if (sour > dest)//从前开始拷贝
+//	{
+//		while (num--)
+//		{
+//			*(char*)dest = *(char*)sour;
+//			dest = (char*)dest + 1;
+//			sour = (char*)sour + 1;
+//		}
+//	}
 //	return ret;
 //}
 //
 //int main()
 //{
-//	int arr[20] = { 1,2,3,4,5,6,7,8,9,10 };
-//
-//	//my_memmove(arr + 2, arr, 16);//1 2 1 2 3 4 7 8 9 10
-//	my_memmove(arr, arr + 2, 16);//3 4 5 6 5 6 7 8 9 10
-//	for (int i = 0; i < 20; i++)
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	my_memmove(arr + 2, arr, 20);//1 2 1 2 3 4 5 8 9 10
+//	//my_memmove(arr, arr + 2, 20);//3 4 5 6 7 6 7 8 9 10
+//	for (int i = 0; i < 10; i++)
 //	{
 //		printf("%d ", arr[i]);
 //	}
 //	return 0;
 //}
-
 
 ///******************************************************************************
 
@@ -539,13 +536,12 @@
 
 
 
-/// @Problem   :        memset     memcmp
+/// @Problem   :   填充内存块 memset()     memcmp()
 ///————————————————————————————————————————————————————————————————————————————            
 /// @Solution  : 
-///一：都是以字节为单位
-///0. 
-///1. 
-
+///一：
+///
+///将 ptr 指向的内存块的第一个字节数设置为指定值
 ///@Codeing    : void * memset ( void * ptr, int value, size_t num ); 
 ///			 int memcmp ( const void * ptr1, const void * ptr2, size_t num );
 ///****************************************************************************          
@@ -566,7 +562,7 @@
 
 
 
-/// @Problem   :      模拟实现 atio  
+/// @Problem   :      模拟实现 atio()  
 ///————————————————————————————————————————————————————————————————————————————            
 /// @Solution  : 
 /// 一：
