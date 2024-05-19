@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "F:\\bite\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\bite\\Codes\\\u5E93\u51FD\u6570.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Codes\\\u5E93\u51FD\u6570.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\bite\\test.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:test.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
@@ -18,33 +14,18 @@
       "DocumentGroups": [
         {
           "DockedWidth": 150,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "test.c",
               "DocumentMoniker": "F:\\bite\\test.c",
               "RelativeDocumentMoniker": "test.c",
               "ToolTip": "F:\\bite\\test.c",
               "RelativeToolTip": "test.c",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2024-05-11T12:05:05.858Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "\u5E93\u51FD\u6570.c",
-              "DocumentMoniker": "F:\\bite\\Codes\\\u5E93\u51FD\u6570.c",
-              "RelativeDocumentMoniker": "Codes\\\u5E93\u51FD\u6570.c",
-              "ToolTip": "F:\\bite\\Codes\\\u5E93\u51FD\u6570.c",
-              "RelativeToolTip": "Codes\\\u5E93\u51FD\u6570.c",
-              "ViewState": "AQIAAAIBAAAAAAAAAAAAABEBAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2024-05-11T12:04:00.324Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T12:05:05.858Z"
             }
           ]
         }
