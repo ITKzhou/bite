@@ -2,6 +2,28 @@
 
 #include "SeqList.h"
 
+
+
+//测试查找元素
+void TestSL6()
+{
+	SL s1;
+	SLInit(&s1);
+	for (int i = 1; i <= 6; i++)
+	{
+		SLPushBack(&s1, i);
+	}
+	SLPrint(&s1);//1 2 3 4 5 6
+	int x = 0;
+	puts("请输入你要查找的值:>");
+	scanf("%d", &x);//3
+	printf("%d\n", SLFind(&s1, x));//2
+
+	SLDestroyed(&s1);
+
+}
+
+
 //测试在任意下标删除
 void TestSL5()
 {
@@ -102,21 +124,24 @@ void TestSL1()
 		SLPrint(&s1);
 	}
 
+
 	SLDestroyed(&s1);
 }
 
 
 int main()
 {
-	TestSL1();
+	//TestSL1();
 
-	TestSL2();
+	//TestSL2();
 
-	TestSL3();
+	//TestSL3();
 
-	TestSL4();
+	//TestSL4();
 
-	TestSL5();
+	//TestSL5();
+
+	TestSL6();
 
 	return 0;
 }

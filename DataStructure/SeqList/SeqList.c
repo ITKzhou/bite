@@ -38,6 +38,7 @@ void SLPrint(SL* ps1)
 void SLDestroyed(SL* ps1)
 {
 	assert(ps1);
+	assert(ps1->a);
 
 	if (ps1->a != NULL)
 	{
@@ -56,7 +57,7 @@ void SLCheckCapacity(SL* ps1)
 	if (ps1->size == ps1->capacity)
 	{
 		int newCapacity = ps1->capacity == 0 ? 4 : ps1->capacity * 2;
-		SLDataType* tmp = (SLDataType*)realloc(ps1->a, newCapacity * sizeof(SLDataType));
+		SLDataType* tmp = (SLDataType*)realloc(ps1->a, sizeof(SLDataType) * newCapacity);
 		if (tmp == NULL)
 		{
 			perror("realloc fail");
@@ -74,7 +75,7 @@ void SLPushBack(SL* ps1, SLDataType x)
 	SLCheckCapacity(ps1);
 
 	ps1->a[ps1->size] = x;
-	++ps1->size;
+	ps1->size++;
 }
 
 
@@ -145,7 +146,22 @@ void SLErase(SL* ps1, int pos)//pos尾任意有效位置的下标
 	while (start < ps1->size)
 	{
 		ps1->a[start] = ps1->a[start + 1];
-		start++;
+		++start;
 	}
 	ps1->size--;
+}
+
+
+int SLFind(SL* ps1, SLDataType x)
+{
+	assert(ps1);
+
+	for (int i = 0; i < ps1->size; i++)
+	{
+		if (ps1->a[i] == x)
+		{
+			return i;
+		}
+	}
+	return -1;
 }

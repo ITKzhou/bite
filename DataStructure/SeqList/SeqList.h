@@ -40,4 +40,5 @@ void SLCheckCapacity(SL* ps1);
 void SLInsert(SL* ps1, int pos, SLDataType x);
 //在任意下标删除
 void SLErase(SL* ps1, int pos);
-
+//查找某个元素，返回下标
+int SLFind(SL* ps1, SLDataType x);
