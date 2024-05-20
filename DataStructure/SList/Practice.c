@@ -13,7 +13,6 @@ void SLTPrint(SLNode* phead)
 		cur = cur->next;
 	}
 	puts("NULL\n");
-
 }
 //创建一个新的结点
 SLNode* CreateNode(SLNDataType x)
@@ -55,30 +54,29 @@ void SLTPushFront(SLNode** pphead, SLNDataType x)
 	newnode->next = *pphead;
 	*pphead = newnode;
 }
+
 //单链表尾删
 void SLTPopBack(SLNode** pphead)
 {
-	assert(*pphead);
-	//只有一个结点
-	if ((*pphead)->next == NULL)
+	SLNode* prev = NULL;
+	SLNode* tail = *pphead;
+	//为空、只有一个结点
+	if (tail ==NULL || tail->next == NULL)
 	{
-		free(*pphead);
+		free(tail);
 		*pphead = NULL;
 	}
 	else
-	{
-		//有多个结点
-		SLNode* prev = NULL;
-		SLNode* tail = *pphead;
+	{//有多个结点
 		while (tail->next != NULL)
 		{
 			prev = tail;
 			tail = tail->next;
 		}
 		free(tail);
+		tail = NULL;
 		prev->next = NULL;
 	}
-	
 }
 //单链表头删
 void SLTPopFront(SLNode** pphead)
@@ -89,12 +87,11 @@ void SLTPopFront(SLNode** pphead)
 	*pphead = tmp;
 }
 
-
-// 单链表查找
+//单链表查找
 SLNode* SListFind(SLNode* phead, SLNDataType x)
 {
 	SLNode* tail = phead;
-	while (tail != NULL)
+	while (tail)
 	{
 		if (tail->val == x)
 		{
@@ -105,3 +102,25 @@ SLNode* SListFind(SLNode* phead, SLNDataType x)
 	return NULL;
 }
 
+//单链表在pos位置之后插入x
+void SListInsertAfter(SLNode* pos, SLNDataType x)
+{
+	assert(pos);
+	SLNode* tmp = pos->next;
+	SLNode* newnode = CreateNode(x);
+	newnode->next = tmp;
+	pos->next = newnode;
+}
+
+//单链表删除pos位置之后的值
+void SListEraseAfter(SLNode* pos)
+{
+	assert(pos);
+	SLNode* tail = pos->next;
+	if (tail != NULL)
+	{
+		SLNode* tailnext = tail->next;
+		free(tail);
+		pos->next = tailnext;
+	}
+}
