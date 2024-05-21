@@ -124,3 +124,64 @@
 //		pos->next = tailnext;
 //	}
 //}
+//
+//
+//
+//// 在pos的前面插入
+//void SLTInsert(SLNode** pphead, SLNode* pos, SLNDataType x)
+//{
+//	assert(pphead);
+//	assert(*pphead);
+//	assert(pos);
+//	if (pos == *pphead)
+//	{
+//		//头插
+//		SLTPushFront(pphead, x);
+//	}
+//	else
+//	{
+//		SLNode* newnode = CreateNode(x);
+//		SLNode* cur = *pphead;
+//		while (cur->next != pos)
+//		{
+//			cur = cur->next;
+//		}
+//		newnode->next = pos;
+//		cur->next = newnode;
+//	}
+//}
+//// 删除pos位置的结点
+//void SLTErase(SLNode** pphead, SLNode* pos)
+//{
+//	assert(pphead);
+//	assert(*pphead);
+//	assert(pos);
+//	if (pos == *pphead)
+//	{
+//		//头删
+//		SLTPopFront(pphead);
+//	}
+//	else
+//	{
+//		SLNode* cur = *pphead;
+//		while (cur->next != pos)
+//		{
+//			cur = cur->next;
+//		}
+//		cur->next = pos->next;
+//		free(pos);
+//		pos = NULL;
+//	}
+//}
+////销毁单链表
+//void SLTDestroy(SLNode** pphead)
+//{
+//	assert(pphead);
+//	SLNode* cur = *pphead;
+//	while (cur != NULL)
+//	{
+//		*pphead = cur->next;
+//		free(cur);
+//		cur = *pphead;
+//	}
+//}

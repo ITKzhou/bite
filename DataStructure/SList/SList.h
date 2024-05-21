@@ -45,6 +45,7 @@ void SListEraseAfter(SLNode* pos);
 void SLTInsert(SLNode** pphead, SLNode* pos, SLNDataType x);
 // 删除pos位置
 void SLTErase(SLNode** pphead, SLNode* pos);
+//销毁单链表
 void SLTDestroy(SLNode** pphead);
 
 
