@@ -1,6 +1,28 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
 #include "Stack.h"
+#include "Queue.h"
+
+
+void TestQueue() {
+	Queue sq;
+	QueueInit(&sq);
+
+	QueuePush(&sq, 1);
+	QueuePush(&sq, 2);
+	QueuePush(&sq, 3);
+	QueuePush(&sq, 4);
+	QueuePush(&sq, 5);
+	
+	while (!QueueEmpty(&sq)) {
+		printf("%d ", QueueFront(&sq));
+		QueuePop(&sq);
+	}
+
+	QueueDestroy(&sq);
+}
+
+
 
 
 void TestStack() {
@@ -26,8 +48,10 @@ void TestStack() {
 
 int main()
 {
-	TestStack();
+	//TestStack();
 	
+	TestQueue();
+
 	return 0;
 }
 
