@@ -12,7 +12,9 @@ void Test7() {
 	ListPrint(plist);
 
 	ListDestory(plist);
-	ListPrint(plist);
+	plist = NULL;
+
+	
 }
 
 //删除pos位置的结点
@@ -62,7 +64,7 @@ void Test5() {
 }
 
 //测试头删
-void Test4() {
+static void Test4() {
 	LTNode* plist = NULL;
 	plist = LTInit();
 
@@ -138,7 +140,7 @@ void Test1() {
 
 int main()
 {
-	//Test1();
+	Test1();
 
 	//Test2();
 
@@ -150,7 +152,7 @@ int main()
 
 	//Test6();
 
-	Test7();
+	//Test7();
 
 	return 0;
 }

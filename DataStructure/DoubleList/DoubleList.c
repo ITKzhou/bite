@@ -47,62 +47,74 @@ void ListDestory(LTNode* pHead) {
 		free(cur);
 		cur = pHead->next;
 	}
+	free(pHead);//pHead形参只是实参的拷贝，改变形参并不会修改实参，需要在调用ListDestory()后再对指针置空
 }
 
 
 void ListPushBack(LTNode* pHead, LTDataType x) {
-	assert(pHead);
-	LTNode* tail = pHead->prev;
+	//assert(pHead);
+	//LTNode* tail = pHead->prev;
 
-	LTNode* newnode = (LTNode*)malloc(sizeof(LTNode));
-	if (newnode == NULL) {
-		perror("malloc fail");
-		exit(-1);
-	}
-	newnode->val = x;
-	tail->next = newnode;
-	newnode->prev = tail;
-	newnode->next = pHead;
-	pHead->prev = newnode;
+	//LTNode* newnode = (LTNode*)malloc(sizeof(LTNode));
+	//if (newnode == NULL) {
+	//	perror("malloc fail");
+	//	exit(-1);
+	//}
+	//newnode->val = x;
+	//tail->next = newnode;
+	//newnode->prev = tail;
+	//newnode->next = pHead;
+	//pHead->prev = newnode;
+
+	//在pHead之前插入，也就是尾插
+	ListInsert(pHead, x);
+
+
 }
 
 
 void ListPopBack(LTNode* pHead) {
-	assert(pHead);
-	//不能为空链表
-	assert(pHead->next != pHead);
-	LTNode* tail = pHead->prev;
-	LTNode* tailPrev = tail->prev;
+	//assert(pHead);
+	////不能为空链表
+	//assert(pHead->next != pHead);
+	//LTNode* tail = pHead->prev;
+	//LTNode* tailPrev = tail->prev;
 
-	tailPrev->next = pHead;
-	pHead->prev = tailPrev;
-	free(tail);
-	tail = NULL;
+	//tailPrev->next = pHead;
+	//pHead->prev = tailPrev;
+	//free(tail);
+	//tail = NULL;
+
+	ListErase(pHead->prev);
+
 }
 
 
 void ListPushFront(LTNode* pHead, LTDataType x) {
-	assert(pHead);
+	/*assert(pHead);
 	LTNode* newnode = CreateLTNode(x);
 	LTNode* first = pHead->next;
 
 	pHead->next = newnode;
 	newnode->prev = pHead;
 	newnode->next = first;
-	first->prev = newnode;
+	first->prev = newnode;*/
 
+	//在第一个结点之前插入。也就是头插
+	ListInsert(pHead->next, x);
 }
 
 void ListPopFront(LTNode* pHead) {
-	assert(pHead);
+	/*assert(pHead);
 	assert(pHead->next != pHead);
 	LTNode* first = pHead->next;
 	LTNode* second = first->next;
 	pHead->next = second;
 	second->prev = pHead;
 	free(first);
-	first = NULL;
+	first = NULL;*/
 
+	ListErase(pHead->next);
 }
 
 LTNode* ListFind(LTNode* pHead, LTDataType x) {
@@ -131,6 +143,7 @@ void ListInsert(LTNode* pos, LTDataType x) {
 	newnode->prev = posPrev;
 	newnode->next = pos;
 	pos->prev = newnode;
+	
 }
 
 void ListErase(LTNode* pos) {
