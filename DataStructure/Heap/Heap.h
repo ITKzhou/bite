@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stdbool.h>
+#include <time.h>
+
 
 
 typedef int HPDataType;
@@ -29,5 +31,14 @@ size_t HeapSize(HP* php);
 //еп©у
 bool HeapEmpty(HP* php);
 
+void Swap(HPDataType* p1, HPDataType* p2);
+void ADjustUp(HPDataType* a, int child);
+void ADjustDown(HPDataType* a, int size, int parent);
 
 
+//╤яеепР
+void HeapSort(HPDataType* arr, int size);
+
+
+void CreateNDate();
+void PrintTopK(const char* file, int k);
