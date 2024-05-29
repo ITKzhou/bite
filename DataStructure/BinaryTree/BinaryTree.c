@@ -160,7 +160,79 @@ BTNode* BTFind(BTNode* root, BTDataType x)
 
 void BTLevelOrder(BTNode* root)
 {
-
+	Queue q;//建一个队列
+	QueueInit(&q);
+	if(root)
+		QueuePush(&q, root);
+	while (!QueueEmpty(&q)) {
+		BTNode* front = QueueFront(&q);
+		QueuePop(&q);
+		printf("%c ", front->data);
+		if(front->left)
+			QueuePush(&q, front->left);
+		if (front->right)
+			QueuePush(&q, front->right);
+	}
+	printf("\n");
+	QueueDestroy(&q);
 }
 
-int BTComplete(BTNode* root);
+void BTDividLevelOrder(BTNode* root)
+{
+	Queue q;
+	QueueInit(&q);
+	if (root)
+		QueuePush(&q, root);//队列存放的是二叉树结点的指针
+	int leveSize = 1;
+	while (!QueueEmpty(&q)) {
+		while (leveSize--) {
+			BTNode* front = QueueFront(&q);
+			QueuePop(&q);
+		
+			printf("%c ", front->data);
+			if (front->left)
+				QueuePush(&q, front->left);
+			if (front->right)
+				QueuePush(&q, front->right);	
+		}
+		printf("\n");
+		leveSize = QueueSize(&q);
+	}
+	printf("\n");
+
+	QueueDestroy(&q);
+}
+
+int BTComplete(BTNode* root)
+{
+	Queue q;//建一个队列
+	QueueInit(&q);
+	if (root)
+		QueuePush(&q, root);
+	while (!QueueEmpty(&q)) 
+	{
+		BTNode* front = QueueFront(&q);
+		QueuePop(&q);
+	
+		if (front == NULL) {//遇到第一个空就跳出循环
+			break;
+		}
+		
+		QueuePush(&q, front->left);
+	
+		QueuePush(&q, front->right);
+	}
+	//队列剩余部分非空，则不是完全二叉树
+	while (!QueueEmpty(&q)) 
+	{
+		BTNode* front = QueueFront(&q);
+		QueuePop(&q);
+
+		if (front) {
+			QueueDestroy(&q);
+			return false;
+		}
+	}
+	QueueDestroy(&q);
+	return true;
+}

@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
+
 #include "BinaryTree.h"
 
 
@@ -27,6 +28,11 @@ void TestCreatrByPrev(){
 
 	BTNode* find = BTFind(root, 'E');
 	printf("find=%c\n", find->data);//E
+
+	BTLevelOrder(root);
+	BTDividLevelOrder(root);
+
+	printf("%d\n", BTComplete(root));
 
 	BTDestory(&root);
 }
@@ -68,13 +74,13 @@ void TestCreatrByPrev(){
 //	printf("find=%d\n", find->data);
 //}
 
-int main()
-{
-	//TestCreate();
-
-	TestCreatrByPrev();
-
-
-	return 0;
-}
+//int main()
+//{
+//	//TestCreate();
+//
+//	TestCreatrByPrev();
+//
+//
+//	return 0;
+//}
 

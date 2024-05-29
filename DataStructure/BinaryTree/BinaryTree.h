@@ -4,7 +4,7 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <math.h>
-
+#include "Queue.h"
 
 typedef char BTDataType;
 
@@ -39,6 +39,7 @@ void BTInOrder(BTNode* root);
 void BTPostOrder(BTNode* root);
 // 层序遍历
 void BTLevelOrder(BTNode* root);
+void BTDividLevelOrder(BTNode* root);
 // 判断二叉树是否是完全二叉树
 int BTComplete(BTNode* root);
 
