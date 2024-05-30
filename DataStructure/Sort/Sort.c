@@ -159,7 +159,7 @@ int Getkeyi(int* a, int begin, int end)
 {
 	int midi = (begin + end) / 2;
 	if (a[begin] < a[midi])
-	{
+	{// begin midi end 三个数选中位数
 		if (a[midi] < a[end])
 			return midi;
 		else if (a[begin] > a[end])
@@ -167,9 +167,18 @@ int Getkeyi(int* a, int begin, int end)
 		else
 			return end;
 	}
+	else
+	{
+		if (a[midi] > a[end])
+			return midi;
+		else if (a[begin] < a[end])
+			return begin;
+		else
+			return end;
+	}
 }
 
-void QuickSort(int* a, int begin, int end)
+void QuickSortRecursion(int* a, int begin, int end)
 {
 	if (begin >= end) {
 		return;
@@ -199,9 +208,119 @@ void QuickSort(int* a, int begin, int end)
 	keyi = left;//调整keyi，进入下一轮快排
 
 	// [begin, keyi-1] keyi [keyi+1, end]，递归，形似二叉树
-	QuickSort(a, begin, keyi - 1);
-	QuickSort(a, keyi + 1, end);
+	QuickSortRecursion(a, begin, keyi - 1);
+	QuickSortRecursion(a, keyi + 1, end);
 }
 
+//hoare
+int PartSort1(int* a, int begin, int end)
+{
+	int midi = Getkeyi(a, begin, end);
+	Swap(&a[begin], &a[midi]);
+
+	int left = begin, right = end;
+	int keyi = begin;//keyi取左边，则右边找小的元素必须先走
+	while (left < right){
+		//右边找小
+		while (left < right && a[right] >= a[begin]) {
+			--right;
+		}
+		//左边找大
+		while (left < right && a[left] <= a[begin]) {
+			++left;
+		}
+		Swap(&a[left], &a[right]);
+	}
+	Swap(&a[left], &a[keyi]);
+	keyi = left;
+	return keyi;
+}
+// 快速排序挖坑法
+// 保留开始元素，并且开始位置为坑，先右指针遍历找小的放进左边的坑里，同时右指针设置为新坑
+// 再左指针遍历找大的放进右边的坑里，同时左指针又设置为新坑
+int PartSort2(int* a, int begin, int end)//左闭右闭
+{
+	int midi = Getkeyi(a, begin, end);
+	Swap(&a[begin], &a[midi]);
+
+	int key = a[begin];
+	int hole = begin;//下标
+	int left = begin + 1, right = end;
+
+	while (left < right)
+	{
+		while (left < right && a[right] >= key) {
+			--right;
+		}
+		a[hole] = a[right];//右边找到小的就放进左边的坑里
+		hole = right;//放进去后，该位置就变为坑
+
+		while (left < right && a[left] <= key) {
+			++left;
+		}
+		a[hole] = a[left];
+		hole = left;
+	}
+	a[hole] = key;//循环结束，左右两边相遇时的位置一定是坑
+	return hole;//把key值放进去，返回左边下标，
+}
+// 快速排序快慢指针法
+// 快指针遇到小于key下标的元素时，慢指针加1后再交换，交换后快指针加1，继续遍历
+// 快指针遇到大于key下标的元素时，直接加1后继续遍历
+int PartSort3(int* a, int begin, int end)
+{
+	int midi = Getkeyi(a, begin, end);
+	Swap(&a[begin], &a[midi]);
+
+	int keyi = begin;
+	int prev = begin, cur = begin + 1;
+	while (cur <= end)
+	{
+		if (a[cur] <= a[keyi] && ++prev != cur) {
+			Swap(&a[prev], &a[cur]);
+		}
+		++cur;
+	}
+	Swap(&a[prev], &a[keyi]);
+	keyi = prev;
+	return keyi;
+}
+
+void QuickSortPartN(int* a, int begin, int end)
+{
+	if (begin >= end) {
+		return;
+	}
+	int keyi = PartSort3(a, begin, end);
+	QuickSortPartN(a, begin, keyi - 1);
+	QuickSortPartN(a, keyi + 1, end);
+}
+
+void QuickSortNonRecursion(int* a, int begin, int end)
+{
+	Stack s;
+	StackInit(&s);
+	StackPush(&s, end);
+	StackPush(&s, begin);//后进先出
+	while (!StackEmpty(&s))
+	{
+		int left = StackTop(&s);
+		StackPop(&s);
+		int right = StackTop(&s);
+		StackPop(&s);
+
+		//第一趟快排
+		int keyi = PartSort3(a, left, right);
+		if (keyi + 1 < right) {
+			StackPush(&s, right);
+			StackPush(&s, keyi + 1);
+		}
+		if (left < keyi - 1) {
+			StackPush(&s, keyi - 1);
+			StackPush(&s, left);
+		}
+	}
+	StackDestroy(&s);
+}
 
 

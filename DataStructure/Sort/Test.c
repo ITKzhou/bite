@@ -7,6 +7,7 @@ void TestSort()
 {
 	int arr[] = { 3,1,8,5,0,7,2,6,9,4 };
 	int sz = sizeof(arr) / sizeof(arr[0]);
+
 	printf("BubbleSort:>\n");
 	BubbleSort(arr, sz);
 	PrintArray(arr, sz);
@@ -27,8 +28,16 @@ void TestSort()
 	HeapSort(arr, sz);
 	PrintArray(arr, sz);
 
-	printf("QuickSort:>\n");
-	QuickSort(arr, 0, sz - 1);
+	printf("QuickSortRecursion:>\n");
+	QuickSortRecursion(arr, 0, sz - 1);
+	PrintArray(arr, sz);
+
+	printf("QuickSortPartN:>\n");
+	QuickSortPartN(arr, 0, sz - 1);
+	PrintArray(arr, sz);
+
+	printf("QuickSortNonRecursion:>\n");
+	QuickSortNonRecursion(arr, 0, sz - 1);
 	PrintArray(arr, sz);
 
 }
