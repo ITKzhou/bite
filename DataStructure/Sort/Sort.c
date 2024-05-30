@@ -87,3 +87,121 @@ void ShellSort(int* a, int n)
 		}
 	}
 }
+
+
+
+void SelectSort(int* a, int n)
+{
+	assert(a);
+	int begin = 0, end = n - 1;
+	while (begin < end)
+	{
+		int mini = begin, maxi = begin;
+		for (int i = begin + 1; i <= end; ++i)//第一趟，begin与begin + 1比较
+		{
+			if (a[i] < a[begin]) {
+				mini = i;//记录比begin下标元素小的下标
+			}
+			if (a[i] > a[begin]) {
+				maxi = i;//记录比begin下标元素大的下标
+			}
+		}
+		Swap(&a[mini], &a[begin]);
+		if (maxi == begin)
+		{//若已经是降序，mini走到end位置，maxi没有动还是begin位置
+			maxi = mini;
+		}
+		Swap(&a[maxi], &a[end]);
+		++begin;
+		--end;
+	}	
+}
+
+
+void AdjustDown(int* a, int size, int parent)
+{
+	int child = parent * 2 + 1;
+	while (child < size)
+	{
+		//升序，建大堆，选出大的数往后放，
+		if (child + 1 < size && a[child + 1] > a[child]) {
+			++child;//假设法，在左右子节点中找到最大的与父节点比较
+		}
+		if (a[child] > a[parent]){
+			Swap(&a[child], &a[parent]);
+			parent = child;
+			child = parent * 2 + 1;
+		}
+		else {
+			break;
+		}	
+	}
+}
+
+void HeapSort(int* a, int n)
+{
+	//建堆>>>升序>>>大堆
+	for (int i = (n - 1 - 1) / 2; i >= 0; --i) {//最后一个元素作为子节点找到父节点
+		AdjustDown(a, n, i);
+	}
+	//首尾元素交换后再调整
+	int end = n - 1;
+	while (end > 0) {
+		Swap(&a[0], &a[end]);
+		AdjustDown(a, end, 0);
+		--end;
+	}
+}
+
+
+
+int Getkeyi(int* a, int begin, int end)
+{
+	int midi = (begin + end) / 2;
+	if (a[begin] < a[midi])
+	{
+		if (a[midi] < a[end])
+			return midi;
+		else if (a[begin] > a[end])
+			return begin;
+		else
+			return end;
+	}
+}
+
+void QuickSort(int* a, int begin, int end)
+{
+	if (begin >= end) {
+		return;
+	}
+
+	//begin,(begin+end)/2, end,在三个下标的元素中找到中位数
+	int midi = Getkeyi(a, begin, end);
+	Swap(&a[begin], &a[midi]);
+
+	//左边是小于等于a[keyi]的元素    a[keyi]   右边是大于等于a[keyi]的元素
+	int left = begin, right = end;
+	int keyi = begin;//keyi取左边，则右边找小的元素必须先走
+	while (left < right) 
+	{
+		//右边找小数
+		while (left < right && a[right] >= a[begin]) {
+			--right;
+		}
+		//左边找大数
+		while (left < right && a[left] <= a[begin]) {
+			++left;
+		}
+
+		Swap(&a[left], &a[right]);
+	}
+	Swap(&a[left], &a[keyi]);
+	keyi = left;//调整keyi，进入下一轮快排
+
+	// [begin, keyi-1] keyi [keyi+1, end]，递归，形似二叉树
+	QuickSort(a, begin, keyi - 1);
+	QuickSort(a, keyi + 1, end);
+}
+
+
+
