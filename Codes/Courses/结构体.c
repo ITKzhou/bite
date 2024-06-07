@@ -325,6 +325,22 @@
 ///**********************************End***************************************
 
 
+//对结构体取别名，取结构体指针名，
+//typedef struct Student
+//{
+//	int age ;
+//	struct Student* next;
+//}Student, * StudentPtr;
+//
+//int main()
+//{
+//	StudentPtr p = (StudentPtr)malloc(sizeof(StudentPtr));
+//	p->age = 18;
+//	printf("%d\n", p->age);
+//	return 0;
+//	free(p);
+//	p = NULL;
+//}
 
 
 

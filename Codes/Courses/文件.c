@@ -319,6 +319,135 @@
 
 ///**********************************End***************************************
 
+///@Time    :
+
+///@Problem : 
+///                                                                           
+///           写一个程序拷贝文件                                                                 
+///————————————————————————————————————————————————————————————————————————————            
+///@Codeing :
+///                                                                           
+/////打开文件data.txt，读取数据
+//打开文件data_copy.txt，写数据
+//从data.txt中读取数据存放到data_copy.txt文件中，直到文件结束。
+//关闭两个文件
+///****************************************************************************          
+
+//static int copyFile(const char* sourceFileName, const char* destFileName)
+//{
+//    //打开文件
+//    FILE* sourceFile = fopen(sourceFileName, "rb");
+//    FILE* destFile = fopen(destFileName, "wb");
+//    if (sourceFile == NULL || destFile == NULL) {
+//        perror("Failed to open files");
+//        if (sourceFile)fclose(sourceFile);//谁成功打开了谁就关闭文件
+//        if (destFile)fclose(destFile);
+//        return 1;
+//    }
+//    //拷贝文件
+//    char buffer[1024];
+//    rsize_t ByteNums;
+//    while ((ByteNums = fread(buffer, sizeof(char), sizeof(buffer), sourceFile)) > 0) {
+//        if (fwrite(buffer, sizeof(char), ByteNums, destFile) != ByteNums) {
+//            perror("Failed to write to destination file");
+//            fclose(sourceFile);
+//            fclose(destFile);
+//            return 1;
+//        }
+//    }
+//    // 检查读取错误
+//    if (ferror(sourceFile)) {
+//        perror("Error reading source file");
+//    }
+//    //关闭文件
+//    fclose(sourceFile);
+//    fclose(destFile);
+//
+//    return ferror(sourceFile) ? 1 : 0;
+//}
+//
+//
+//int main() {
+//    const char* sourceFileName = "data.cpp";
+//    const char* destFileName = "data_copy.cpp";
+//
+//    if (copyFile(sourceFileName, destFileName) == 0) {
+//        printf("File copy completed successfully.\n");
+//    }
+//    else {
+//        printf("File copy failed.\n");
+//    }
+//    return 0;
+//}
+
+
+//int main()
+//{
+//	FILE* pr = fopen("data.txt", "r");
+//	if (NULL == pr)
+//	{
+//		perror("fopen for read");
+//		return 1;
+//	}
+//	FILE* pw = fopen("data_copy.txt", "w");
+//	if (NULL == pw)
+//	{
+//		perror("fopen for write");
+//		fclose(pr);
+//		return 1;
+//	}
+//	//读和写
+//	int ch = 0;
+//	while ((ch = fgetc(pr)) != EOF)
+//	{
+//		fputc(ch, pw);
+//	}
+//	//关闭文件
+//	fclose(pr);
+//	fclose(pw);
+//	pr = NULL;
+//	pw = NULL;
+//
+//}
+
+///————————————————————————————————————————————————————————————————————————————  
+
+
+//// 定义宏计算结构体中某变量相对于首地址的偏移量
+//#define offsetof(type, member) ((size_t) &(((type *)0)->member))
+//
+//// 示例结构体
+//struct Example {
+//    int a;
+//    double b;
+//    char c;
+//};
+//
+//int main() {
+//    // 使用宏计算偏移量
+//    printf("Offset of a: %zu\n", offsetof(struct Example, a));
+//    printf("Offset of b: %zu\n", offsetof(struct Example, b));
+//    printf("Offset of c: %zu\n", offsetof(struct Example, c));
+//
+//    return 0;
+//}
+
+
+#include <stdio.h>
+
+// 定义宏交换整数的奇数位和偶数位
+#define SWAP_ODD_EVEN_BITS(x) (((x & 0xAAAAAAAA) >> 1) | ((x & 0x55555555) << 1))
+
+int main() {
+    unsigned int x = 0b10101010; // 示例输入
+    unsigned int result = SWAP_ODD_EVEN_BITS(x);
+
+    printf("Original: 0x%X\n", x);
+    printf("Swapped : 0x%X\n", result);
+
+    return 0;
+}
+
 
 
 

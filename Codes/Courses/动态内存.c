@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
+#include <stdbool.h>
 
 
 /// @Problem   :   malloc     calloc     realloc   free
@@ -329,3 +330,56 @@
 ///**********************************End***************************************
 
 
+////用malloc模拟实现一个二维数组
+//int main()
+//{
+//	int rows = 3;
+//	int cols = 5;
+//
+//	//开辟数组空间
+//	int* data = (int*)malloc(rows * cols * sizeof(int));
+//	if (data == NULL) {
+//		perror("malloc fail");
+//		free(data);
+//		exit(-1);
+//	}
+//	//初始化数据
+//	for (int i = 0; i < rows; i++){
+//		for (int j = 0; j < cols; j++) {
+//			data[i * cols + j] = i * cols + j;
+//		}
+//	}
+//
+//	//打印二维数组
+//	for (int i = 0; i < rows; i++) {
+//		for (int j = 0; j < cols; j++) {
+//			printf("%-3d", data[i * cols + j]);
+//		}
+//		printf("\n");
+//	}
+//
+//	free(data);
+//	data = NULL;
+//
+//	return 0;
+//}
+
+
+////使用联合体的知识，写一个函数判断当前机器是大端还是小端，如果是小端返回1，如果是大端返回0.
+//
+//int isLittle()
+//{
+//	union MyUnion
+//	{
+//		unsigned int n;
+//		unsigned char ch[4];
+//	}test;
+//	test.n = 0x01020304;
+//	return test.ch[0] == 1 ? 0 : 1;
+//}
+//
+//int main()
+//{
+//	printf("%d\n", isLittle());
+//	return 0;
+//}
