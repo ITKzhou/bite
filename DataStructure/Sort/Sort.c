@@ -323,4 +323,46 @@ void QuickSortNonRecursion(int* a, int begin, int end)
 	StackDestroy(&s);
 }
 
+void _MergeSort(int* a, int begin, int end, int* tmp)
+{
+	if (begin >= end) {
+		return;
+	}
+	int midi = (begin + end) / 2;//分为[begin, mid][mid+1, end]左右区间
+	_MergeSort(a, begin, midi, tmp);
+	_MergeSort(a, midi + 1, end, tmp);
 
+	int begin1 = begin, end1 = midi;
+	int begin2 = midi + 1, end2 = end;
+	int i = begin;
+	while (begin1 <= end1 && begin2 <= end2)
+	{
+		if (a[begin1] < a[begin2]) {
+			tmp[i++] = a[begin1++];
+		}
+		else {
+			tmp[i++] = a[begin2++];
+		}
+	}
+	while (begin1 <= end1) {
+		tmp[i++] = a[begin1++];
+	}
+	while (begin2 <= end2) {
+		tmp[i++] = a[begin2++];
+	}
+	memcpy(a + begin, tmp + begin, sizeof(int) * (end - begin + 1));
+}
+	
+
+void MergeSort(int* a, int n)
+{
+	int* tmp = (int*)malloc(sizeof(int) * n);
+	if (tmp == NULL) {
+		perror("malloc fail");
+		exit(-1);
+	}
+	_MergeSort(a, 0, n - 1, tmp);
+
+	free(tmp);
+
+}

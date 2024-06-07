@@ -36,4 +36,9 @@ void QuickSortPartN(int* a, int begin, int end);
 void QuickSortNonRecursion(int* a, int begin, int end);
 
 
+//πÈ≤¢≈≈–Ú
+void _MergeSort(int* a, int begin, int end, int* tmp);
+void MergeSort(int* a, int n);
+
+
 
