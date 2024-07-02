@@ -13,8 +13,8 @@ typedef int SLDataType;
 typedef struct SeqList
 {
 	SLDataType* a;
-	size_t size;
-	size_t capacity;
+	int size;
+	int capacity;
 }SL;
 
 
@@ -42,3 +42,5 @@ void SLInsert(SL* ps1, int pos, SLDataType x);
 void SLErase(SL* ps1, int pos);
 //查找某个元素，返回下标
 int SLFind(SL* ps1, SLDataType x);
+//修改
+void SLModify(SL* ps1, int pos, SLDataType x);
