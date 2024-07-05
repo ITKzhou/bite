@@ -6,8 +6,6 @@
 #include <string.h>
 #include <windows.system.h>
 
-
-
 typedef int SLNDataType;
 
 typedef struct SListNode
@@ -15,9 +13,6 @@ typedef struct SListNode
 	int val;
 	struct SListNode* next;
 }SLNode;
-
-
-
 
 
 //¥Ú”°
