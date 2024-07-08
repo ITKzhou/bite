@@ -122,6 +122,8 @@ void Test2() {
 	
 	ListPopBack(plist);
 	ListPrint(plist);
+
+	
 }
 
 //≤‚ ‘≥ı ºªØ°¢¥Ú”°°¢Œ≤≤Â
@@ -136,23 +138,26 @@ void Test1() {
 
 	ListPrint(plist);
 	
+	ListDestory(plist);
+	plist = NULL;
+
 }
 
 int main()
 {
 	Test1();
 
-	//Test2();
+	Test2();
 
-	//Test3();
+	Test3();
 
-	//Test4();
+	Test4();
 
-	//Test5();
+	Test5();
 
-	//Test6();
+	Test6();
 
-	//Test7();
+	Test7();
 
 	return 0;
 }

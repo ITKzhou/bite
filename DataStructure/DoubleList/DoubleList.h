@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <stdbool.h>
 
 
 
@@ -24,7 +25,9 @@ typedef struct ListNode
 
 
 // 创建一个结点
-LTNode* CreateLTNode(LTDataType x);
+LTNode* BuyLTNode(LTDataType x);
+// 判空
+bool LTEmpty(LTNode* pHead);
 // 初始化
 LTNode* LTInit();
 // 销毁

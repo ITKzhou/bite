@@ -6,7 +6,7 @@
 
 
 
-LTNode* CreateLTNode(LTDataType x) {
+LTNode* BuyLTNode(LTDataType x) {
 	LTNode* newnode = (LTNode*)malloc(sizeof(LTNode));
 	if (newnode == NULL) {
 		perror("malloc fail");
@@ -19,8 +19,13 @@ LTNode* CreateLTNode(LTDataType x) {
 	return newnode;
 }
 
+bool LTEmpty(LTNode* pHead) {
+	assert(pHead);
+	return pHead->next == pHead;
+}
+
 LTNode* LTInit() {
-	LTNode* pHead = CreateLTNode(-1);
+	LTNode* pHead = BuyLTNode(-1);
 	pHead->next = pHead;
 	pHead->prev = pHead;
 
@@ -47,74 +52,94 @@ void ListDestory(LTNode* pHead) {
 		free(cur);
 		cur = pHead->next;
 	}
-	free(pHead);//pHead形参只是实参的拷贝，改变形参并不会修改实参，需要在调用ListDestory()后再对指针置空
+	free(pHead);
+	//pHead形参只是实参的拷贝，改变形参并不会修改实参，需要在调用ListDestory()后再对指针置空
 }
 
 
 void ListPushBack(LTNode* pHead, LTDataType x) {
 	//assert(pHead);
-	//LTNode* tail = pHead->prev;
 
-	//LTNode* newnode = (LTNode*)malloc(sizeof(LTNode));
-	//if (newnode == NULL) {
-	//	perror("malloc fail");
-	//	exit(-1);
-	//}
-	//newnode->val = x;
+	//LTNode* newnode = BuyLTNode(x);
+	//LTNode* tail = pHead->prev;
+	//
 	//tail->next = newnode;
 	//newnode->prev = tail;
 	//newnode->next = pHead;
 	//pHead->prev = newnode;
 
 	//在pHead之前插入，也就是尾插
+
 	ListInsert(pHead, x);
-
-
 }
-
-
-void ListPopBack(LTNode* pHead) {
-	//assert(pHead);
-	////不能为空链表
-	//assert(pHead->next != pHead);
-	//LTNode* tail = pHead->prev;
-	//LTNode* tailPrev = tail->prev;
-
-	//tailPrev->next = pHead;
-	//pHead->prev = tailPrev;
-	//free(tail);
-	//tail = NULL;
-
-	ListErase(pHead->prev);
-
-}
-
 
 void ListPushFront(LTNode* pHead, LTDataType x) {
-	/*assert(pHead);
-	LTNode* newnode = CreateLTNode(x);
-	LTNode* first = pHead->next;
+	//assert(pHead);
 
-	pHead->next = newnode;
-	newnode->prev = pHead;
-	newnode->next = first;
-	first->prev = newnode;*/
+	//LTNode* newnode = BuyLTNode(x);
+	//LTNode* first = pHead->next;
+
+	//pHead->next = newnode;
+	//newnode->prev = pHead;
+	//newnode->next = first;
+	//first->prev = newnode;
 
 	//在第一个结点之前插入。也就是头插
+
 	ListInsert(pHead->next, x);
 }
 
+void ListPopBack(LTNode* pHead) {
+	//assert(pHead);
+	//assert(!LTEmpty(pHead));
+
+	//LTNode* tail = pHead->prev;
+	//LTNode* tailPrev = tail->prev;
+
+	//free(tail);
+	//tailPrev->next = pHead;
+	//pHead->prev = tailPrev;
+
+
+	ListErase(pHead->prev);
+}
+
 void ListPopFront(LTNode* pHead) {
-	/*assert(pHead);
-	assert(pHead->next != pHead);
-	LTNode* first = pHead->next;
-	LTNode* second = first->next;
-	pHead->next = second;
-	second->prev = pHead;
-	free(first);
-	first = NULL;*/
+	//assert(pHead);
+	//assert(!LTEmpty(pHead));
+
+	//LTNode* first = pHead->next;
+	//LTNode* second = first->next;
+
+	//free(first);
+	//pHead->next = second;
+	//second->prev = pHead;
 
 	ListErase(pHead->next);
+}
+
+
+void ListInsert(LTNode* pos, LTDataType x) {
+	assert(pos);
+
+	LTNode* newnode = BuyLTNode(x);
+	LTNode* posPrev = pos->prev;
+
+	posPrev->next = newnode;
+	newnode->prev = posPrev;
+	newnode->next = pos;
+	pos->prev = newnode;	
+}
+
+void ListErase(LTNode* pos) {
+	assert(pos);
+
+	LTNode* posPrev = pos->prev;
+	LTNode* posNext = pos->next;
+
+	posPrev->next = posNext; 
+	posNext->prev = posPrev;
+	free(pos);
 }
 
 LTNode* ListFind(LTNode* pHead, LTDataType x) {
@@ -127,33 +152,5 @@ LTNode* ListFind(LTNode* pHead, LTDataType x) {
 		cur = cur->next;
 	}
 	return NULL;
-}
-
-
-void ListInsert(LTNode* pos, LTDataType x) {
-	assert(pos);
-	LTNode* posPrev = pos->prev;
-	LTNode* newnode = (LTNode*)malloc(sizeof(LTNode));
-	if (newnode == NULL) {
-		perror("malloc fail");
-		exit(-1);
-	}
-	newnode->val = x;
-	posPrev->next = newnode;
-	newnode->prev = posPrev;
-	newnode->next = pos;
-	pos->prev = newnode;
-	
-}
-
-void ListErase(LTNode* pos) {
-	assert(pos);
-	LTNode* posPrev = pos->prev;
-	LTNode* posNext = pos->next;
-
-	posPrev->next = posNext;
-	posNext->prev = posPrev;
-	free(pos);
-	pos = NULL;
 }
 
