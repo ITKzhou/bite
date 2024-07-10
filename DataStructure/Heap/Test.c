@@ -31,6 +31,7 @@ void TestHSort()
 void TestHeap()
 {
 	int a[] = { 4,6,2,1,5,8,2,9 };
+
 	HP hp;
 	HeapInit(&hp);
 	for (int i = 0; i < sizeof(a) / sizeof(int); ++i)
@@ -51,9 +52,9 @@ void TestHeap()
 
 int main()
 {
-	//TestHeap();
+	TestHeap();
 
-	TestHSort();
+	//TestHSort();
 	
 	//TestTopk();
 

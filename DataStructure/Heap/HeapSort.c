@@ -2,27 +2,45 @@
 
 #include "Heap.h"
 
-void HeapSort(HPDataType* arr, int size)//升序
+//void HeapSort(HPDataType* arr, int sz)//升序_建大堆_选出大的数往后放
+//{
+//	//O(N*logN)	向上调整建堆
+//	//从第二个数据开始依次尾插，同时进行向上调整建
+//	for (int i = 1; i < sz; i++)
+//	{
+//		ADjustUp(arr, i);
+//	}
+//	//首尾元素交换，再进行向下调整找次大数
+//	int end = sz - 1;
+//	while (end > 0) {
+//		Swap(&arr[0], &arr[end]);
+//		ADjustDown(arr, end, 0);
+//		--end;
+//	}
+//}
+
+
+
+void HeapSort(HPDataType* arr, int sz)//升序_建大堆_选出大的数往后放
 {
-	//O(N*logN)	建大堆
-	//for (int i = 1; i < size; i++)
-	//{
-	//	ADjustUp(arr, i);//依次向前一个元素尾插，同时进行向上调整建
-	//}
-	
-	//O(N)	升序——选出大的数往后放
-	for (int i = (size - 1 - 1) / 2; i >= 0; --i)//最后一个元素找父节点
+	//O(N)	向下调整建堆
+	//从最后一个分支结点开始向下调整，直到调整到根节点结束
+	for (int i = (sz - 1 - 1) / 2; i >= 0; --i)
 	{
-		ADjustDown(arr, size, i);
+		ADjustDown(arr, sz, i);
 	}
-	//选数
-	int end = size - 1;
-	while (end > 0) {//堆顶选出一个最大数，与相应数组末尾的元素交换，再进行向下调整找次大数
+	//堆顶选出一个最大数，与相应数组末尾的元素交换，再进行向下调整找次大数
+	//每选出一个数，下次调整的范围就减少1
+	int end = sz - 1;
+	while (end > 0) {
 		Swap(&arr[0], &arr[end]);
 		ADjustDown(arr, end, 0);
 		--end;
 	}
 }
+
+
+
 
 void CreateNDate()
 {

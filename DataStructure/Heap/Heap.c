@@ -30,7 +30,7 @@ void ADjustUp(HPDataType* a, int child)
 {
 	int parent = (child - 1) / 2;//求父节点的下标
 	while (child > 0){
-		if (a[child] < a[parent]) {//小堆，父节点 <= 孩子节点
+		if (a[child] < a[parent]) {//小堆，任意父节点都 小于或等于 孩子节点
 			Swap(&a[child], &a[parent]);
 			child = parent;
 			parent = (child - 1) / 2;
@@ -65,10 +65,10 @@ void ADjustDown(HPDataType* a, int size, int parent)
 {
 	int child = parent * 2 + 1;//假设左孩子节点小
 	while (child < size) {
-		if (child + 1 < size && a[child + 1] > a[child]) {//避免因右孩子节点不存在，出现的越界访问
-			++child;//否则，取右孩子节点
+		if (child + 1 < size && a[child + 1] < a[child]) {//避免因右孩子节点不存在，出现的越界访问
+			++child;//右孩子小就去右孩子节点
 		}
-		if (a[child] > a[parent]) {//小堆
+		if (a[child] < a[parent]) {
 			Swap(&a[child], &a[parent]);
 			parent = child;
 			child = parent * 2 + 1;
@@ -82,7 +82,8 @@ void ADjustDown(HPDataType* a, int size, int parent)
 void HeapPop(HP* php)
 {
 	assert(php); 
-	assert(php->size > 0);
+	assert(!HeapEmpty(php));
+
 	Swap(&php->a[0], &php->a[php->size - 1]);//移除堆顶的元素，先与堆尾的元素交换，再尾删
 	php->size--;
 
@@ -92,7 +93,8 @@ void HeapPop(HP* php)
 HPDataType HeapTop(HP* php)
 {
 	assert(php);
-	assert(php->size > 0);
+	assert(!HeapEmpty(php));
+
 	return php->a[0];
 }
 
