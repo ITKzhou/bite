@@ -35,40 +35,42 @@
 
 
 
-#include "Queue.h"
+//#include "Queue.h"
+//
+//
+//void TestQueue() {
+//	Queue sq;
+//	QueueInit(&sq);
+//
+//	QueuePush(&sq, 1);
+//	QueuePush(&sq, 2);
+//	QueuePush(&sq, 3);
+//	QueuePush(&sq, 4);
+//	QueuePush(&sq, 5);
+//
+//	printf("back=%d\n", QueueBack(&sq));
+//	printf("size=%d\n", QueueSize(&sq));
+//	while (!QueueEmpty(&sq)) {
+//		printf("%d ", QueueFront(&sq));
+//		QueuePop(&sq);
+//	}
+//	printf("\n");
+//
+//	printf("size=%d\n", QueueSize(&sq));
+//	
+//
+//	printf("%d ", QueueFront(&sq));
+//	QueuePop(&sq);
+//
+//	QueueDestroy(&sq);
+//}
+//
+//
+//int main()
+//{
+//	TestQueue();
+//
+//	return 0;
+//}
 
 
-void TestQueue() {
-	Queue sq;
-	QueueInit(&sq);
-
-	QueuePush(&sq, 1);
-	QueuePush(&sq, 2);
-	QueuePush(&sq, 3);
-	QueuePush(&sq, 4);
-	QueuePush(&sq, 5);
-
-	printf("back=%d\n", QueueBack(&sq));
-	printf("size=%d\n", QueueSize(&sq));
-	while (!QueueEmpty(&sq)) {
-		printf("%d ", QueueFront(&sq));
-		QueuePop(&sq);
-	}
-	printf("\n");
-
-	printf("size=%d\n", QueueSize(&sq));
-	
-
-	//printf("%d ", QueueFront(&sq));
-	//QueuePop(&sq);
-
-	QueueDestroy(&sq);
-}
-
-
-int main()
-{
-	TestQueue();
-
-	return 0;
-}

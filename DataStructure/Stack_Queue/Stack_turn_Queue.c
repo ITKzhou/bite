@@ -19,131 +19,131 @@
 //#include <stdbool.h>
 //#include <string.h>
 //
-//
 //typedef int STDataType;
-//typedef struct Stack
-//{
-//	STDataType* _a;
-//	int _top;		// 栈顶
-//	int _capacity;  // 容量 
-//}Stack;
 //
-//// 初始化栈 
+//typedef struct Stack {
+//    STDataType* _a;
+//    int _top;      // 栈顶
+//    int _capacity; // 容量
+//} Stack;
+//
 //void StackInit(Stack* ps);
-//// 入栈 
-//void StackPush(Stack* ps, STDataType x);
-//// 出栈 
-//void StackPop(Stack* ps);
-//// 获取栈顶元素 
-//STDataType StackTop(Stack* ps);
-//// 获取栈中有效元素个数 
-//int StackSize(Stack* ps);
-//// 检测栈是否为空，如果为空返回非零结果，如果不为空返回0 
-//bool StackEmpty(Stack* ps);
-//// 销毁栈 
 //void StackDestroy(Stack* ps);
-//
-//
-//
+//bool StackEmpty(Stack* ps);
+//int StackSize(Stack* ps);
+//void StackPush(Stack* ps, STDataType x);
+//void StackPop(Stack* ps);
+//STDataType StackTop(Stack* ps);
 //
 //void StackInit(Stack* ps) {
-//	assert(ps);
-//	ps->_a = NULL;
-//	ps->_capacity = 0;
-//	ps->_top = 0;// 表示top指向栈顶元素的下一个位置
-//	//pst->top = -1;// 表示top指向栈顶元素
-//}
-//
-//void StackPush(Stack* ps, STDataType x) {
-//	assert(ps);
-//	if (ps->_top == ps->_capacity) {
-//		STDataType newcapacity = ps->_capacity == 0 ? 4 : ps->_capacity * 2;
-//		STDataType* tmp = (STDataType*)realloc(ps->_a, sizeof(STDataType) * newcapacity);
-//		if (tmp == NULL) {
-//			perror("realloc fail");
-//			return;
-//		}
-//		ps->_a = tmp;
-//		ps->_capacity = newcapacity;
-//	}
-//	ps->_a[ps->_top] = x;
-//	ps->_top++;
-//}
-//
-//void StackPop(Stack* ps) {
-//	assert(ps);
-//	assert(ps->_top > 0);
-//	ps->_top--;
-//}
-//
-//STDataType StackTop(Stack* ps) {
-//	assert(ps);
-//	assert(ps->_top > 0);
-//	return ps->_a[ps->_top - 1];
+//    assert(ps);
+//    ps->_a = NULL;
+//    ps->_capacity = 0;
+//    ps->_top = 0; // 表示top指向栈顶元素的下一个位置
+//    // pst->top = -1;// 表示top指向栈顶元素
 //}
 //
 //int StackSize(Stack* ps) {
-//	assert(ps);
-//	return ps->_top;//实质是下标，或是指针
+//    assert(ps);
+//    return ps->_top; // 实质是下标，或是指针
 //}
 //
 //bool StackEmpty(Stack* ps) {
-//	assert(ps);
-//	return ps->_top == 0;//为空，返回真，即1；不为空，返回假，即0
+//    assert(ps);
+//    return ps->_top == 0; // 为空，返回真，即1；不为空，返回假，即0
+//}
+//
+//void StackPush(Stack* ps, STDataType x) {
+//    assert(ps);
+//    if (ps->_top == ps->_capacity) {
+//        STDataType newcapacity = ps->_capacity == 0 ? 4 : ps->_capacity * 2;
+//        STDataType* tmp =
+//            (STDataType*)realloc(ps->_a, newcapacity * sizeof(STDataType));
+//        if (tmp == NULL) {
+//            perror("realloc fail");
+//            return;
+//        }
+//        ps->_a = tmp;
+//        ps->_capacity = newcapacity;
+//    }
+//    ps->_a[ps->_top] = x;
+//    ps->_top++;
+//}
+//
+//void StackPop(Stack* ps) {
+//    assert(ps);
+//    assert(!StackEmpty(ps));
+//
+//    ps->_top--;
+//}
+//
+//STDataType StackTop(Stack* ps) {
+//    assert(ps);
+//    assert(!StackEmpty(ps));
+//
+//    return ps->_a[ps->_top - 1];
 //}
 //
 //void StackDestroy(Stack* ps) {
-//	assert(ps);
-//	free(ps->_a);
-//	ps->_a = NULL;
-//	ps->_top = ps->_capacity = 0;
+//    assert(ps);
+//    free(ps->_a);
+//    ps->_a = NULL;
+//    ps->_top = ps->_capacity = 0;
 //}
+//
+//// 规定一个是入栈，另一个是出栈，若出栈为空就倒数据再出栈，否则直接出栈
 //
 //typedef struct {
-//	Stack pushst;
-//	Stack popst;
+//    Stack pushst;
+//    Stack popst;
 //} MyQueue;
 //
-//
 //MyQueue* myQueueCreate() {
-//	MyQueue* obj = (MyQueue*)malloc(sizeof(MyQueue));
-//	if (obj == NULL) {
-//		perror("malloc fail");
-//		exit(-1);
-//	}
-//	StackInit(&obj->pushst);
-//	StackInit(&obj->popst);
-//	return obj;
+//    MyQueue* obj = (MyQueue*)malloc(sizeof(MyQueue));
+//    StackInit(&obj->pushst);
+//    StackInit(&obj->popst);
+//    return obj;
 //}
 //
-//void myQueuePush(MyQueue* obj, int x) {
-//	StackPush(&obj->pushst, x);
-//}
+//void myQueuePush(MyQueue* obj, int x) { StackPush(&obj->pushst, x); }
 //
 //int myQueuePop(MyQueue* obj) {
-//	int front = myQueuePeek(obj);
-//	StackPop(&obj->popst);
-//	return front;
+//    int top = myQueuePeek(obj);
+//    StackPop(&obj->popst);
+//    return top;
 //}
 //
 //int myQueuePeek(MyQueue* obj) {
-//	if (StackEmpty(&obj->popst)) {
-//		while (!StackEmpty(&obj->pushst)) {
-//			StackPush(&obj->popst, StackTop(&obj->pushst));
-//			StackPop(&obj->pushst);
-//		}
-//	}
-//	return StackTop(&obj->popst);
+//    if (StackEmpty(&obj->popst)) { // 倒数据
+//        while (!StackEmpty(&obj->pushst)) {
+//            StackPush(&obj->popst, StackTop(&obj->pushst));
+//            StackPop(&obj->pushst);
+//        }
+//    }
+//    return StackTop(&obj->popst);
 //}
 //
 //bool myQueueEmpty(MyQueue* obj) {
-//	return StackEmpty(&obj->pushst) && StackEmpty(&obj->popst);
+//    return StackEmpty(&obj->pushst) && StackEmpty(&obj->popst);
 //}
 //
 //void myQueueFree(MyQueue* obj) {
-//	StackDestroy(&obj->pushst);
-//	StackDestroy(&obj->popst);
-//	free(obj);
+//    StackDestroy(&obj->pushst);
+//    StackDestroy(&obj->popst);
+//    free(obj);
+//}
+//
+//int main()
+//{
+//    MyQueue* obj = myQueueCreate();
+//    myQueuePush(obj, 1);
+//    myQueuePush(obj, 2);
+//
+//    int peek_top = myQueuePeek(obj);
+//
+//
+//
+//    return 0;
 //}
 
 ///  时间复杂度： O()                                                            

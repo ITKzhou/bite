@@ -22,76 +22,82 @@
 //
 //
 //
+// 尾下标的下一个等于首下标就为满，模size+1个就构成循环队列
+
+//typedef int CQDataType;
+//
 //typedef struct {
-//	int* data;
-//	int front;
-//	int rear;
-//	int cap;
+//    int front;
+//    int rear;
+//    int size;
+//    CQDataType* data;
 //} MyCircularQueue;
 //
-//bool myCircularQueueIsEmpty(MyCircularQueue* obj) {
-//	return obj->front == obj->rear;
-//}
-//
-//bool myCircularQueueIsFull(MyCircularQueue* obj) {//需要确定下标时，就要考虑下标在循环里的变化，需取模
-//	return (obj->rear + 1) % (obj->cap + 1) == obj->front;
-//}
-//
 //MyCircularQueue* myCircularQueueCreate(int k) {
-//	MyCircularQueue* obj = (MyCircularQueue*)malloc(sizeof(MyCircularQueue));
-//	if (obj == NULL) {
-//		perror("malloc fail");
-//		exit(-1);
-//	}
-//	obj->data = (int*)malloc(sizeof(int) * (k + 1));//尾下标始终指向元素的下一位，当指向k+1时就进入循环
-//	obj->front = 0;
-//	obj->rear = 0;
-//	obj->cap = k;//有效长度为k
+//    MyCircularQueue* obj = (MyCircularQueue*)malloc(sizeof(MyCircularQueue));
+//    obj->data =
+//        (CQDataType*)malloc((k + 1) * sizeof(CQDataType)); // 开k+1长度的数组
+//    obj->front = obj->rear = 0;
+//    obj->size = k;
 //
-//	return obj;
+//    return obj;
+//}
+//
+//bool myCircularQueueIsEmpty(MyCircularQueue* obj) {
+//    return obj->front == obj->rear;
+//}
+//
+//bool myCircularQueueIsFull(
+//    MyCircularQueue* obj) { // 尾下标的下一个等于首下标就满了
+//    return (obj->rear + 1) % (obj->size + 1) == obj->front;
 //}
 //
 //bool myCircularQueueEnQueue(MyCircularQueue* obj, int value) {
-//	if (myCircularQueueIsFull(obj)) {
-//		return false;
-//	}
-//	obj->data[obj->rear] = value;
-//	obj->rear++;
-//	obj->rear %= (obj->cap + 1);//尾下标增长到cap+1时，就循环，下标范围是[0，cap+1)
+//    if (myCircularQueueIsFull(obj)) {
+//        return false;
+//    }
+//    obj->data[obj->rear] = value;
+//    obj->rear++;
 //
-//	return true;
+//    obj->rear %= (obj->size + 1);
+//
+//    return true;
 //}
 //
 //bool myCircularQueueDeQueue(MyCircularQueue* obj) {
-//	if (myCircularQueueIsEmpty(obj)) {
-//		return false;
-//	}
-//	obj->front++;//头下标始终指向元素，出队一个就往后走一个
-//	obj->front %= obj->cap + 1;//下标范围是[0，cap+1)
+//    if (myCircularQueueIsEmpty(obj)) {
+//        return false;
+//    }
+//    obj->front++;
 //
-//	return true;
+//    obj->front %= (obj->size + 1);
+//
+//    return true;
 //}
 //
 //int myCircularQueueFront(MyCircularQueue* obj) {
-//	if (myCircularQueueIsEmpty(obj)) {
-//		return -1;
-//	}
-//	return obj->data[obj->front];
+//    if (myCircularQueueIsEmpty(obj)) {
+//        return -1;
+//    }
+//
+//    return obj->data[(obj->front) %= (obj->size + 1)];
 //}
 //
 //int myCircularQueueRear(MyCircularQueue* obj) {
-//	if (myCircularQueueIsEmpty(obj)) {
-//		return -1;
-//	}//实质是取尾下标减1的元素，尾下标加上有效长度再对增长范围取模
-//	return obj->data[(obj->rear - 1 + obj->cap + 1) % (obj->cap + 1)];
+//    if (myCircularQueueIsEmpty(obj)) {
+//        return -1;
+//    }
+//    // 计算循环队列的尾下标
+//    return obj->data[(obj->rear - 1 + obj->size + 1) % (obj->size + 1)];
 //}
 //
 //void myCircularQueueFree(MyCircularQueue* obj) {
-//	free(obj->data);
-//	free(obj);
+//    free(obj->data);
+//    free(obj);
 //}
 //
-/////  时间复杂度： O()                                                            
+//
+///////  时间复杂度： O()                                                            
 /////  空间复杂度： O()                                                                        
 //
 /////————————————————————————————————————————————————————————————————————————————  
