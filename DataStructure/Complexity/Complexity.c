@@ -4,6 +4,26 @@
 #include <string.h>
 #include <assert.h>
 
+//二分查找算法
+//int binarySearch(int* a, int n, int x) {
+//    assert(a);
+//
+//    int begin = 0;
+//    int end = n - 1;
+//
+//    while (begin<=end)
+//    {
+//        int mid = begin + ((end - begin) >> 1);
+//        if (a[mid] < x)
+//            begin = mid + 1;
+//        else if (a[mid] > x)
+//            end = mid - 1;
+//        else
+//            return mid;
+//    }
+//    
+//    return -1;
+//} 
 
 
 ///@Time    :2023_10_21__111期__复杂度讲解
