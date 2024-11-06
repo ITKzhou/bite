@@ -17,6 +17,8 @@ typedef struct SListNode
 
 //打印
 void SLTPrint(SLNode* phead);
+//销毁单链表
+void SLTDestroy(SLNode** pphead);
 //创建一个新的结点
 SLNode* CreateNode(SLNDataType x);
 //单链表尾插
@@ -40,8 +42,7 @@ void SListEraseAfter(SLNode* pos);
 void SLTInsert(SLNode** pphead, SLNode* pos, SLNDataType x);
 // 删除pos位置
 void SLTErase(SLNode** pphead, SLNode* pos);
-//销毁单链表
-void SLTDestroy(SLNode** pphead);
+
 
 
 

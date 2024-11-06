@@ -1,7 +1,7 @@
-//#define _CRT_SECURE_NO_WARNINGS 1
-//
-//#include "SList.h"
-//
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include "SList.h"
+
 //
 //
 //
@@ -242,3 +242,33 @@
 //
 //	return 0;
 //}
+
+
+
+
+
+int main()
+{
+	SLNode* plist = NULL;
+	SLTPushBack(&plist, 1);
+	SLTPushBack(&plist, 2);
+	SLTPushBack(&plist, 3);
+	SLTPushBack(&plist, 4);
+	SLTPrint(plist);
+
+	SLNode* pos = SListFind(plist, 1);
+	if (pos) {
+		SLTErase(&plist, pos);
+	}
+	SLTPrint(plist);
+
+
+
+
+
+
+
+	SLTDestroy(&plist);
+
+	return 0;
+}
