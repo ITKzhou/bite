@@ -21,6 +21,7 @@ void SLTDestroy(SLNode** pphead)
 		free(cur);
 		cur = next;
 	}
+	*pphead = NULL;//传二级指针，plist已经在函数内部置空
 }
 
 SLNode* CreateNode(SLNDataType x)
